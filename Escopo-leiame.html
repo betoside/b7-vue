@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue.js</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <script src="https://v2.vuejs.org/js/vue.js"></script>
+    <!-- <script src="https://v2.vuejs.org/js/vue.min.js"></script> -->
+</head>
+<body>
+
+    <p>Conteúdo do curso (74 aulas)</p>
+    <h2>Módulo 1: Vue.js</h2>
+    
+
+<pre>
+
+<hr>
+<strong>#1: Vue.js: O que é e como usa?</strong>
+
+    <a href="https://vuejs.org/" target="_blank">https://vuejs.org/</a>
+    script src="https://v2.vuejs.org/js/vue.js">/script>
+    script src="https://v2.vuejs.org/js/vue.min.js">/script>
+
+<hr>
+<strong>#2: Olá Mundo no Vue</strong>
+    <div id="app02" v-html="frase"></div>
+    <script>
+        let app02 = new Vue({
+            el:'#app02',
+            data:{
+                frase:'Olá strong>Boniek/strong>, bom dia!',
+            }
+        });
+    </script>
+
+    div id="app02" v-html="frase">
+        !-- {{ frase }} -->
+    /div>
+
+    let app02 = new Vue({
+        el:'#app02',
+        data:{
+            frase:'Olá strong>Boniek/strong>, bom dia!',
+        }
+    });
+
+<hr>
+<strong>#3: Condicionais e Loop</strong>
+    <div id="v_03_placar">
+        <div>
+            {{ n }}
+        </div>
+        <!-- <span v-if="n > 5">Parabéns, vc passou de 5 pontos</span> -->
+        <span v-if="exibir">Parabéns, vc passou de 5 pontos</span>
+    </div>
+    <script>
+        let v_03_placar = new Vue({
+            el:'#v_03_placar',
+            data:{
+                n:0,
+                exibir:true
+            }
+        });
+    </script>
+    ###
+    div id="v_03_placar">
+        div>
+            {{ n }}
+        /div>
+        !-- span v-if="n > 5">Parabéns, vc passou de 5 pontos/span> -->
+        span v-if="exibir">Parabéns, vc passou de 5 pontos/span>
+    /div>
+
+    let v_03_placar = new Vue({
+        el:'#v_03_placar',
+        data:{
+            n:0,
+            exibir:true
+        }
+    });
+
+    ===
+
+    <div id="v_3_lista">
+        <ul>
+            <li v-for="info in nomes">
+                <span>{{info.sobrenome + ', '}}</span>
+                <strong v-text="info.nome"></strong>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let v_3_lista = new Vue({
+            el:"#v_3_lista",
+            data:{
+                nomes:[
+                    {nome:'jack', sobrenome:'Cast', idade:'99'},
+                    {nome:'flavio', sobrenome:'Team', idade:'98'},
+                    {nome:'moana', sobrenome:'Havai', idade:'97'},
+                    {nome:'kaialani', sobrenome:'Sister', idade:'96'}
+                ]
+            }
+        });
+    </script>
+    ###
+    div id="v_3_lista">
+        ul>
+            li v-for="info in nomes">
+                span>{{info.sobrenome + ', '}}/span>
+                strong v-text="info.nome">/strong>
+            /li>
+        /ul>
+    /div>
+        let v_3_lista = new Vue({
+            el:"#v_3_lista",
+            data:{
+                nomes:[
+                    {nome:'jack', sobrenome:'Cast', idade:'99'},
+                    {nome:'flavio', sobrenome:'Team', idade:'98'},
+                    {nome:'moana', sobrenome:'Havai', idade:'97'},
+                    {nome:'kaialani', sobrenome:'Sister', idade:'96'}
+                ]
+            }
+        });
+
+
+
+<hr>
+<strong>#4: Associação Bi-lateral (Receber dados de input)</strong>
+</pre>
+    <div id="v_4_app">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        n1: <br>
+                        <input type="text" v-model="n1">
+                    </td>
+                    <td>
+                        n2: <br>
+                        <input type="text" v-model="n2">
+                    </td>
+                    <td>
+                        n3: <br>
+                        <input type="text" v-model="n3">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ n1 }}</td>
+                    <td>{{ n2 }}</td>
+                    <td>{{ n3 }}</td>
+                </tr>
+            </tbody>
+        </table>
+        Soma: {{ n1 + parseInt(n2) + parseInt(n3) }}
+    </div>
+    <script>
+        let v_4_app = new Vue({
+            el:'#v_4_app',
+            data:{
+                texto:'info qualquer', 
+                n1:1,
+                n2:2,
+                n3:3
+            }
+        })
+    </script>
+    <style>
+        tbody td{ background: yellowgreen;}
+    </style>
+<pre>
+
+    input type="text" v-model="n1">
+    input type="text" v-model="n2">
+    input type="text" v-model="n3">
+
+    td>{{ n1 }}/td>
+    td>{{ n2 }}/td>
+    td>{{ n3 }}/td>
+    
+    Soma: {{ n1 + parseInt(n2) + parseInt(n3) }}
+        
+    script>
+    let v_4_app = new Vue({
+        el:'#v_4_app',
+        data:{
+            texto:'info qualquer', 
+        n1:1,
+        n2:2,
+        n3:3
+        }
+    })
+
+<hr>
+<strong>#5: Exercício da soma</strong>
+    <div id="v_5_app">
+        <div>
+            {{v_5_n1}} + {{v_5_n2}} = <input type="text" v-model="v_5_resposta">
+        </div>
+        <div>
+            <div v-if="v_5_resposta != 0 && v_5_n1 + v_5_n2 == parseInt(v_5_resposta)">Acertou</div>
+            <div v-if="v_5_resposta != 0 && v_5_n1 + v_5_n2 != parseInt(v_5_resposta)">Errou</div>
+        </div>
+    </div>
+    <script>
+        let v_5_app = new Vue({
+            el:'#v_5_app',
+            data:{
+                v_5_n1:Math.floor(Math.random()*9),
+                v_5_n2:Math.floor(Math.random()*9),
+                v_5_resposta:0
+            }
+        });
+    </script>
+    div id="v_5_app">
+        div>
+            {{v_5_n1}} + {{v_5_n2}} = input type="text" v-model="v_5_resposta">
+        /div>
+        div>
+            div v-if="v_5_resposta != 0 && v_5_n1 + v_5_n2 == parseInt(v_5_resposta)">Acertou/div>
+            div v-if="v_5_resposta != 0 && v_5_n1 + v_5_n2 != parseInt(v_5_resposta)">Errou/div>
+        /div>
+    /div>
+    let v_5_app = new Vue({
+        el:'#v_5_app',
+        data:{
+            v_5_n1:Math.floor(Math.random()*9),
+            v_5_n2:Math.floor(Math.random()*9),
+            v_5_resposta:0
+        }
+    });
+
+<hr>
+<strong>#6: Usando métodos</strong>
+    <div id="v_6">
+        <!-- 
+            <div>{{ nome }}</div>
+            <div>{{ cidade }}</div>
+        -->
+        <div>{{ mostrar('betao', 'SP') }}</div>
+        <div>{{ testar() }}</div>
+    </div>
+    <script>
+        let v_6 = new Vue({
+            el:'#v_6',
+            data:{
+                nome:'Thiago',
+                cidade:'Fortaleza'
+            },
+            methods:{
+                mostrar:(nome, cidade)=>{
+                    let txt = "Surfer: " + nome + ". Local: " + cidade;
+                    return txt;
+                },
+                testar:()=>{
+                    return 'Testando 1,2,3...';
+                }
+            }
+
+        });
+    </script>
+
+    div id="v_6">
+        div>{{ mostrar('betao', 'SP') }}/div>
+        div>{{ testar() }}/div>
+    /div>
+    let v_6 = new Vue({
+        el:'#v_6',
+        data:{
+            nome:'Thiago',
+            cidade:'Fortaleza'
+        },
+        methods:{
+            mostrar:(nome, cidade)=>{
+                let txt = "Surfer: " + nome + ". Local: " + cidade;
+                return txt;
+            },
+            testar:()=>{
+                return 'Testando 1,2,3...';
+            }
+        }
+
+    });
+
+<hr>
+<strong>#7: Controle de Flow (1/2)</strong>
+
+#8: Controle de Flow (2/2)
+#9: Components
+#10: Ciclo de vida
+#11: Sintaxe de template: Interpolações
+#12: Sintaxe de template: Directivas
+#13: Sintaxe de template: Atalhos de directivas
+#14: Exercício: Contatos (fácil)
+#15: Propriedade Computada
+#16: Computada em método
+#17: Watchers
+#18: Watcher vs Computado
+#19: Getter e Setter Computado
+#20: Exercício: Contatos (difícil)
+#21: Bind de class
+#22: Bind de class com prop computada
+#23: Bind inline
+#24: Renderização condicional
+#25: Renderização de lista
+#26: Detecção de mudança de array
+#27: Detecção de mudança de objeto
+#28: Exercício: Filtrando resultados de array
+#29: Eventos de clique (1/2)
+#30: Eventos de clique (2/2)
+#31: Eventos de teclado
+#32: Eventos com CTRL, ALT, SHIFT, etc..
+#33: Eventos de botões do mouse
+#34: Binding em formulários
+#35: Binding com valores
+#36: Binding com modificadores
+#37: Criando os próprios componentes
+#38: Componente com ação simples
+#39: Componente global vs local
+#40: Passando props ao componente
+#41: Componente com conteúdo
+#42: Executando funções fora do componente
+#43: Exercicio: To-do com componentes
+#44: Solução: To-do com componentes
+#45: Exercício: Sinal de trânsito
+#46: Exercício: To-do com busca
+#47: Exercício: Feed do instagram
+#48: Exercício: Tabela com edição via modal
+#49: Solução: Sinal de trânsito (1/2)
+#50: Solução: Sinal de trânsito (2/2)
+#51: Solução: To-do com busca (1/2)
+#52: Solução: To-do com busca (2/2)
+#53: Interpretado In-Browser vs Pré-compilado
+#54: Projeto Pré-compilado (1/2)
+#55: Projeto Pré-compilado (2/2)
+#56: Instalando servidor local
+#57: Router: Instalando e configurando
+#58: Router: Rota simples
+#59: Router: Rota dinâmica
+#60: Router: Rota 404
+#61: Router: Rota combinada
+#62: Bundle Básico
+#63: Requisição com Axios
+#64: Projeto: Pegando o preço do Bitcoin
+#65: Requisição com Lista
+#66: Requisição: Tratando Erros e Loading
+#67: Requisição POST com dados
+#68: Exercício: Exibindo os filmes em cartaz
+#69: Exercício: Criando um carrinho de compras
+#70: Exercício: Cadastro de usuários
+#71: Projeto: Sistema de Login (1/4)
+#72: Projeto: Sistema de Login (2/4)
+#73: Projeto: Sistema de Login (3/4)
+#74: Projeto: Sistema de Login (4/4)
+    
+</pre>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>4: Associação Bi-lateral (Receber dados de input)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://v2.vuejs.org/js/vue.js"></script>
+    <!-- <script src="https://v2.vuejs.org/js/vue.min.js"></script> -->
+</head>
+<body>
+    <h4>4: Associação Bi-lateral (Receber dados de input)</h4>
+
+    <style>
+        tbody td{ background: yellowgreen;}
+    </style>
+
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        n1: <br>
+                        <input type="text" v-model="n1">
+                    </td>
+                    <td>
+                        n2: <br>
+                        <input type="text" v-model="n2">
+                    </td>
+                    <td>
+                        n3: <br>
+                        <input type="text" v-model="n3">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ n1 }}</td>
+                    <td>{{ n2 }}</td>
+                    <td>{{ n3 }}</td>
+                </tr>
+            </tbody>
+        </table>
+        Soma: {{ n1 + parseInt(n2) + parseInt(n3) }}
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data:{
+                texto:'info qualquer', 
+                n1:1,
+                n2:2,
+                n3:3
+            }
+        })
+
+    </script>
+</body>
+</html>

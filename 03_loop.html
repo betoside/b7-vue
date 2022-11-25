@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue.js</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <script src="https://v2.vuejs.org/js/vue.js"></script>
+    <!-- <script src="https://v2.vuejs.org/js/vue.min.js"></script> -->
+</head>
+<body>
+
+    <div id="teste">
+
+    </div>
+
+    <div id="lista">
+
+        <ul>
+            <li v-for="info in nomes">
+                <span>{{info.sobrenome + ', '}}</span>
+                <strong v-text="info.nome"></strong>
+            </li>
+        </ul>
+        
+    </div>
+
+    <script src="03_loop.js"></script>
+</body>
+</html>
