@@ -11,24 +11,33 @@
 	<div id="app">
 		<header class="header">
 
-			
+			{{ titulo }}
+			<br>
+			<small v-html="subtitulo"></small>
 
 		</header>
 		<section class="container">
 			<section class="container__content">
 
-				
+				{{ carregado ? 'Sim' : 'Não' }}
+				<!-- 
+					considerado uma única expressão 
+					nao tem return nem if
+					existe apenas um condicional ternario
+				-->
 
 			</section>
 			<aside class="container__sidebar">
 
-				
+				{{ nome }}
+				<br><br>
+				{{ nome.split('').reverse().join('') }}
 
 			</aside>
 		</section>
 		<footer class="footer">
 
-			
+			<p v-html="copyright"></p>
 
 		</footer>
 	</div>
