@@ -462,6 +462,57 @@
 
 <hr>
 <strong>#10: Ciclo de vida</strong>
+
+    beforeCreate
+    created
+
+    beforeMounte
+    mounted
+
+    beforeUpdate
+    updated
+
+    beforeDestroy
+    destroyed
+
+    <div id="v_10">
+        {{ nome }}
+    </div>
+
+    <script>
+        Vue.component('pais', {
+            props:['bandeira', 'continente'],
+            template:'<p v-html="bandeira + continente"></p>'
+        })
+
+        let v_10 = new Vue({
+            el:'#v_10',
+            data:{
+                nome:'Betoside'
+            },
+            beforeCreate:function(){ // usando function torna-se possível acessar o this
+                // alert(this.nome);
+            },
+            created:function(){
+                // alert(this.nome);
+            },
+            beforeMounte:function(){
+
+            },
+            mounted:function(){
+
+            },
+            beforeUpdate:function(){
+                alert('Before update: ' + this.nome);
+            },
+            updated:function(){
+                alert('Updated: ' + this.nome);
+            }
+
+        });
+    </script>
+
+
 #11: Sintaxe de template: Interpolações
 #12: Sintaxe de template: Directivas
 #13: Sintaxe de template: Atalhos de directivas
