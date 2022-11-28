@@ -642,7 +642,71 @@
     /script>
 
 
-#14: Exercício: Contatos (fácil)
+<hr>
+<strong>#14: Exercício: Contatos (fácil)</strong>
+
+    <div id="v_14">
+        Digite um nome:
+        <input v-model="nomeInput">
+        <button @click="add">Adicionar</button>
+
+        --- x --- 
+        <ul>
+            <li v-for="item in lista">{{ item }}</li>
+        </ul>
+
+        Total de nomes: {{ lista.length }}
+    </div>
+    <script>
+        let v_14 = new Vue({
+            el:'#v_14',
+            data:{
+                nomeInput:'',
+                lista:[]
+                
+            },
+            methods:{
+                add:function(){
+                    if(this.nomeInput.length > 0){
+                        this.lista.push( this.nomeInput );
+                        this.nomeInput = '';
+                    }
+                }
+            }
+        });
+    </script>
+     div id="v_14">
+        Digite um nome:
+         input v-model="nomeInput">
+         button @click="add">Adicionar /button>
+
+        --- x --- 
+         ul>
+             li v-for="item in lista">{{ item }} /li>
+         /ul>
+
+        Total de nomes: {{ lista.length }}
+     /div>
+
+    ###
+        let v_14 = new Vue({
+            el:'#v_14',
+            data:{
+                nomeInput:'',
+                lista:[]
+                
+            },
+            methods:{
+                add:function(){
+                    if(this.nomeInput.length > 0){
+                        this.lista.push( this.nomeInput );
+                        this.nomeInput = '';
+                    }
+                }
+            }
+        });
+
+
 #15: Propriedade Computada
 #16: Computada em método
 #17: Watchers
