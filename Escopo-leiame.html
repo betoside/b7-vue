@@ -707,7 +707,28 @@
         });
 
 
-#15: Propriedade Computada
+<hr>
+<strong>#15: Propriedade Computada</strong>
+
+    <div id="v_15">
+        <strong>nome:</strong> {{ nome }}
+        {{ nome.split('').reverse().join('') }}
+        <strong>computed:</strong> {{ nomeInvertido }}
+    </div>
+    <script>
+        let v_15 = new Vue({
+            el:'#v_15',
+            data:{
+                nome:'kelly slater'    
+            },
+            computed:{
+                nomeInvertido:function(){
+                    return this.nome.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+
 #16: Computada em método
 #17: Watchers
 #18: Watcher vs Computado
