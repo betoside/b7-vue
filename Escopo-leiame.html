@@ -513,7 +513,8 @@
     </script>
 
 
-#11: Sintaxe de template: Interpolações
+<hr>
+<strong>#11: Sintaxe de template: Interpolações</strong>
 
     <a href="11_fe_vue_html_basico/index.html">11_fe_vue_html_basico/index.html</a>
 
@@ -525,8 +526,122 @@
     -->
 
 
-#12: Sintaxe de template: Directivas
-#13: Sintaxe de template: Atalhos de directivas
+<hr>
+<strong>#12: Sintaxe de template: Directivas</strong>
+
+    <div id="v_12_bind">
+        v-bind
+        atribuindo um ID a uma tag
+        <div v-bind:id="v_12_id01">Esta é uma div com um ID atribuído. Check it in console </div>
+
+        <a v-bind:href="link">aplicando um link dinâmico com v-bind</a>
+
+        <div v-bind:id="'item-'+n">Div adicionando ID e concatenando texto: item-14</div>
+
+
+        v-on (normal// usado para eventos)
+        <div v-on:click="clicou">Clique, teste o método 'clicou'</div>
+
+        form
+        <form v-on:submit.prevent="enviando">
+            <input type="text"> <input type="submit" value="Envair">
+        </form>
+    </div>
+    <script>
+        let v_12_bind = new Vue({
+            el:'#v_12_bind',
+            data:{
+                texto:'Qualquer texto, teste.',
+                v_12_id01:'Ok_Ok',
+                link: 'https://www.google.com',
+                n:14
+            },
+            methods:{
+                clicou:()=>{
+                    alert('Evento funcionou. Clicou!');
+                },
+                enviando:()=>{
+                    alert('Enviou o formulário sem recarregar a página');
+                }
+            }
+        });
+    </script>
+
+    div v-bind:id="v_12_id01">Esta é uma div com um ID atribuído. Check it in console /div>
+
+    a v-bind:href="link">aplicando um link dinâmico com v-bind/a>
+
+    div v-bind:id="'item-'+n">Div adicionando ID e concatenando texto: item-14/div>
+
+    div v-on:click="clicou">Clique, teste o método 'clicou'/div>
+
+    form v-on:submit.prevent="enviando">
+        input type="text"> input type="submit" value="Envair">
+    /form>
+
+    ###
+    let v_12_bind = new Vue({
+        el:'#v_12_bind',
+        data:{
+            texto:'Qualquer texto, teste.',
+            v_12_id01:'Ok_Ok',
+            link: 'https://www.google.com',
+            n:14
+        },
+        methods:{
+            clicou:()=>{
+                alert('Evento funcionou. Clicou!');
+            },
+            enviando:()=>{
+                alert('Enviou o formulário sem recarregar a página');
+            }
+        }
+    });
+
+
+<hr>
+<strong>#13: Sintaxe de template: Atalhos de directivas</strong>
+
+    <div id="v_13">
+        <a :href="url">:href google</a>
+
+        <button @click="fazAlgo">@click = simulando o v-on</button>
+    </div>
+    <script>
+        let v_13 = new Vue({
+            el:'#v_13',
+            data:{
+                url:'https:www.google.com'
+                
+            },
+            methods:{
+                fazAlgo:()=>{
+                    alert('Fez algo após o click');
+                }
+            }
+        });
+    </script>
+    div id="v_13">
+        a :href="url">:href google/a>
+
+        button @click="fazAlgo">@click = simulando o v-on/button>
+    /div>
+    script>
+        let v_13 = new Vue({
+            el:'#v_13',
+            data:{
+                url:'https:www.google.com'
+                
+            },
+            methods:{
+                fazAlgo:()=>{
+                    alert('Fez algo após o click');
+                }
+            }
+        });
+    /script>
+
+
 #14: Exercício: Contatos (fácil)
 #15: Propriedade Computada
 #16: Computada em método
