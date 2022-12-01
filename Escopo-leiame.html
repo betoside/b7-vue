@@ -885,8 +885,71 @@
         });
     /script>
 
-#18: Watcher vs Computado
-#19: Getter e Setter Computado
+<hr>
+<strong>#18: Watcher vs Computado</strong>
+
+    <div id="v_18">
+        <input v-model="primeiroNome">
+        <input v-model="segundoNome">
+        Nome completo: {{ nomeCompleto }}
+    </div>
+    <script>
+        let v_18 = new Vue({
+            el:'#v_18',
+            data:{
+                primeiroNome:'',
+                segundoNome:'',
+                // nomeCompleto:''
+            },
+            computed:{
+                nomeCompleto:function(){
+                    return this.primeiroNome+' '+this.segundoNome;
+                }
+            }
+            /* ,
+            watch:{
+                primeiroNome:function(){
+                    this.nomeCompleto = this.primeiroNome+' '+this.segundoNome;
+                },
+                segundoNome:function(){
+                    this.nomeCompleto = this.primeiroNome+' '+this.segundoNome;
+                }
+            }
+            */
+        });
+    </script>
+    script>
+        let v_18 = new Vue({
+            el:'#v_18',
+            data:{
+                primeiroNome:'',
+                segundoNome:'',
+                // nomeCompleto:''
+            },
+            computed:{
+                nomeCompleto:function(){
+                    return this.primeiroNome+' '+this.segundoNome;
+                }
+            }
+            /* ,
+            watch:{
+                primeiroNome:function(){
+                    this.nomeCompleto = this.primeiroNome+' '+this.segundoNome;
+                },
+                segundoNome:function(){
+                    this.nomeCompleto = this.primeiroNome+' '+this.segundoNome;
+                }
+            }
+            */
+        });
+    /script>
+
+
+<hr>
+<strong>#19: Getter e Setter Computado</strong>
+
+
+
 #20: Exercício: Contatos (difícil)
 #21: Bind de class
 #22: Bind de class com prop computada
