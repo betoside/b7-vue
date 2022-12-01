@@ -729,8 +729,162 @@
         });
     </script>
 
-#16: Computada em método
-#17: Watchers
+    div id="v_15">
+        strong>nome:/strong> {{ nome }}
+        {{ nome.split('').reverse().join('') }}
+        strong>computed:/strong> {{ nomeInvertido }}
+    /div>
+    script>
+        let v_15 = new Vue({
+            el:'#v_15',
+            data:{
+                nome:'kelly slater'    
+            },
+            computed:{
+                nomeInvertido:function(){
+                    return this.nome.split('').reverse().join('');
+                }
+            }
+        });
+    /script>
+
+<hr>
+<strong>#16: Computada em método</strong>
+
+    <div id="v_16">
+        <div>
+            <strong>nome:</strong> {{ nome }}
+        </div>
+        <div>
+            {{ nome.split('').reverse().join('') }}
+        </div>
+        <div>            
+            <strong>computed:</strong> {{ nomeInvertido() }}
+        </div>
+        <div> computed: {{ aleatorio }} </div>
+        <div> computed: {{ aleatorio }} </div>
+        <div> method: {{ aleatorioFuncao() }} </div>
+        <div> method: {{ aleatorioFuncao() }} </div>
+    </div>
+    <script>
+        let v_16 = new Vue({
+            el:'#v_16',
+            data:{
+                nome:'kelly slater',
+                numero:5
+            },
+            computed:{
+                aleatorio:function(){
+                    let al = Math.floor(Math.random() * 100);
+                    return this.numero + ' + ' + al + ' = ' + (this.numero+al);
+                }
+            },
+            methods:{
+                nomeInvertido:function(){
+                    return this.nome.split('').reverse().join('');
+                },
+                aleatorioFuncao:function(){
+                    let al = Math.floor(Math.random() * 100);
+                    return this.numero + ' + ' + al + ' = ' + (this.numero+al);
+                }
+            }
+        });
+    </script>
+    script>
+        let v_16 = new Vue({
+            el:'#v_16',
+            data:{
+                nome:'kelly slater',
+                numero:5
+            },
+            computed:{
+                aleatorio:function(){
+                    let al = Math.floor(Math.random() * 100);
+                    return this.numero + ' + ' + al + ' = ' + (this.numero+al);
+                }
+            },
+            methods:{
+                nomeInvertido:function(){
+                    return this.nome.split('').reverse().join('');
+                },
+                aleatorioFuncao:function(){
+                    let al = Math.floor(Math.random() * 100);
+                    return this.numero + ' + ' + al + ' = ' + (this.numero+al);
+                }
+            }
+        });
+    /script>
+
+<hr>
+<strong>#17: Watchers</strong>
+
+    <div id="v_17">
+
+        <div>
+            <input v-model="conta"> <span> {{aviso}} </span>
+        </div>
+        <div>
+            {{ resultado }}
+        </div>
+        
+    </div>
+    <script>
+        let v_17 = new Vue({
+            el:'#v_17',
+            data:{
+                conta:'',
+                aviso:'',
+                resultado:'',
+                timer: null
+            },
+            methods:{
+                fazerConta:function(){
+                    this.aviso = '';
+                    this.resultado = eval(this.conta);
+                }
+            },
+            watch:{
+                conta:function(){
+                    this.aviso = "Digitando...";
+
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                    }
+
+                    this.timer = setTimeout(this.fazerConta, 1000);
+                }
+            }
+        });
+    </script>
+    script>
+        let v_17 = new Vue({
+            el:'#v_17',
+            data:{
+                conta:'',
+                aviso:'',
+                resultado:'',
+                timer: null
+            },
+            methods:{
+                fazerConta:function(){
+                    this.aviso = '';
+                    this.resultado = eval(this.conta);
+                }
+            },
+            watch:{
+                conta:function(){
+                    this.aviso = "Digitando...";
+
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                    }
+
+                    this.timer = setTimeout(this.fazerConta, 1000);
+                }
+            }
+        });
+    /script>
+
 #18: Watcher vs Computado
 #19: Getter e Setter Computado
 #20: Exercício: Contatos (difícil)
