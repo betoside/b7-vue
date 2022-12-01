@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Usado para testar a aula da vez</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://v2.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<pre>
+
+    <div id="v_20">
+        Digite um nome:
+        <input v-model="nomeInput"> <span>{{aviso}}</span>
+        
+        <div v-if="nomePronto">
+            <!-- <button v-on="add">Adicionar</button> -->
+            <button @click="add">Adicionar</button>
+        </div>
+
+        <div style="border: 1px solid black;">
+            <ul>
+                <li v-for="item in lista">{{ item }} </li>
+            </ul>
+            {{ totalTexto }}
+        </div>
+
+    </div>
+    <script>
+        let v_20 = new Vue({
+            el:'#v_20',
+            data:{
+                nomeInput:'',
+                aviso:'',
+                nomePronto:false,
+                lista:[],
+                timer:null
+            },
+            watch:{
+                nomeInput:function(){
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                    }
+
+                    if (this.nomeInput != '') {
+                        this.aviso = "Digitando...";
+                        this.nomePronto = false;
+                        this.timer = setTimeout(this.ficarPronto, 1500);
+                    }
+                }
+            },
+            methods:{
+                ficarPronto:function(){
+                    this.aviso = '';
+
+                    if(this.nomeInput.length > 2){
+                        this.nomePronto = true;
+                    }
+                },
+                add:function(){
+                    this.lista.push(this.nomeInput);
+
+                    this.nomeInput = '';
+                    this.nomePronto = false;
+                }
+            },
+            computed:{
+                totalTexto:function(){
+                    return "Total de nome: " + this.lista.length;
+                }
+            }
+        });
+    </script>
+
+
+</pre>
+
+</body>
+</html>

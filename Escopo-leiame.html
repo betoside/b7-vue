@@ -790,6 +790,21 @@
             }
         });
     </script>
+    div id="v_16">
+        div>
+            strong>nome:/strong> {{ nome }}
+        /div>
+        div>
+            {{ nome.split('').reverse().join('') }}
+        /div>
+        div>            
+            strong>computed:/strong> {{ nomeInvertido() }}
+        /div>
+        div> computed: {{ aleatorio }} /div>
+        div> computed: {{ aleatorio }} /div>
+        div> method: {{ aleatorioFuncao() }} /div>
+        div> method: {{ aleatorioFuncao() }} /div>
+    /div>
     script>
         let v_16 = new Vue({
             el:'#v_16',
@@ -856,6 +871,16 @@
             }
         });
     </script>
+    div id="v_17">
+
+        div>
+            input v-model="conta"> span> {{aviso}} /span>
+        /div>
+        div>
+            {{ resultado }}
+        /div>
+        
+    /div>
     script>
         let v_17 = new Vue({
             el:'#v_17',
@@ -918,6 +943,11 @@
             */
         });
     </script>
+    div id="v_18">
+        input v-model="primeiroNome">
+        input v-model="segundoNome">
+        Nome completo: {{ nomeCompleto }}
+    /div>
     script>
         let v_18 = new Vue({
             el:'#v_18',
@@ -974,9 +1004,100 @@
             }
         });
     </script>
+    div id="v_19">
+        input v-model="primeiroNome">
+        input v-model="segundoNome">
+        input v-model="nomeCompleto">
+    /div>
+    script>
+        let v_19 = new Vue({
+            el:'#v_19',
+            data:{
+                primeiroNome:'',
+                segundoNome:''
+            },
+            computed:{
+                nomeCompleto:{
+                    get:function(){
+                        return this.primeiroNome+' '+this.segundoNome;
+                    },
+                    set:function(novoValor){
+                        let nomes = novoValor.split(' ');
+                        this.primeiroNome = nomes[0];
+                        this.segundoNome = nomes[1];
+                    }
+                }
+            }
+        });
+    /script>
 
 
-#20: Exercício: Contatos (difícil)
+<hr>
+<strong>#20: Exercício: Contatos (difícil)</strong>
+
+    <div id="v_20">
+        Digite um nome:
+        <input v-model="nomeInput"> <span>{{aviso}}</span>
+        
+        <div v-if="nomePronto">
+            <!-- <button v-on="add">Adicionar</button> -->
+            <button @click="add">Adicionar</button>
+        </div>
+
+        <div style="border: 1px solid black;">
+            <ul>
+                <li v-for="item in lista">{{ item }} </li>
+            </ul>
+            {{ totalTexto }}
+        </div>
+
+    </div>
+    <script>
+        let v_20 = new Vue({
+            el:'#v_20',
+            data:{
+                nomeInput:'',
+                aviso:'',
+                nomePronto:false,
+                lista:[],
+                timer:null
+            },
+            watch:{
+                nomeInput:function(){
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                    }
+
+                    if (this.nomeInput != '') {
+                        this.aviso = "Digitando...";
+                        this.nomePronto = false;
+                        this.timer = setTimeout(this.ficarPronto, 1500);
+                    }
+                }
+            },
+            methods:{
+                ficarPronto:function(){
+                    this.aviso = '';
+
+                    if(this.nomeInput.length > 2){
+                        this.nomePronto = true;
+                    }
+                },
+                add:function(){
+                    this.lista.push(this.nomeInput);
+
+                    this.nomeInput = '';
+                    this.nomePronto = false;
+                }
+            },
+            computed:{
+                totalTexto:function(){
+                    return "Total de nome: " + this.lista.length;
+                }
+            }
+        });
+    </script>
+
 #21: Bind de class
 #22: Bind de class com prop computada
 #23: Bind inline
