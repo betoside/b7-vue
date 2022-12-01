@@ -948,6 +948,32 @@
 <hr>
 <strong>#19: Getter e Setter Computado</strong>
 
+    <div id="v_19">
+        <input v-model="primeiroNome">
+        <input v-model="segundoNome">
+        <input v-model="nomeCompleto">
+    </div>
+    <script>
+        let v_19 = new Vue({
+            el:'#v_19',
+            data:{
+                primeiroNome:'',
+                segundoNome:''
+            },
+            computed:{
+                nomeCompleto:{
+                    get:function(){
+                        return this.primeiroNome+' '+this.segundoNome;
+                    },
+                    set:function(novoValor){
+                        let nomes = novoValor.split(' ');
+                        this.primeiroNome = nomes[0];
+                        this.segundoNome = nomes[1];
+                    }
+                }
+            }
+        });
+    </script>
 
 
 #20: Exercício: Contatos (difícil)
