@@ -1098,7 +1098,154 @@
         });
     </script>
 
-#21: Bind de class
+    div id="v_20">
+        Digite um nome:
+        input v-model="nomeInput"> span>{{aviso}}/span>
+        
+        div v-if="nomePronto">
+            !-- button v-on="add">Adicionar/button> -->
+            button @click="add">Adicionar/button>
+        /div>
+
+        div style="border: 1px solid black;">
+            ul>
+                li v-for="item in lista">{{ item }} /li>
+            /ul>
+            {{ totalTexto }}
+        /div>
+
+    /div>
+    script>
+        let v_20 = new Vue({
+            el:'#v_20',
+            data:{
+                nomeInput:'',
+                aviso:'',
+                nomePronto:false,
+                lista:[],
+                timer:null
+            },
+            watch:{
+                nomeInput:function(){
+                    if(this.timer != null){
+                        clearTimeout(this.timer);
+                    }
+
+                    if (this.nomeInput != '') {
+                        this.aviso = "Digitando...";
+                        this.nomePronto = false;
+                        this.timer = setTimeout(this.ficarPronto, 1500);
+                    }
+                }
+            },
+            methods:{
+                ficarPronto:function(){
+                    this.aviso = '';
+
+                    if(this.nomeInput.length > 2){
+                        this.nomePronto = true;
+                    }
+                },
+                add:function(){
+                    this.lista.push(this.nomeInput);
+
+                    this.nomeInput = '';
+                    this.nomePronto = false;
+                }
+            },
+            computed:{
+                totalTexto:function(){
+                    return "Total de nome: " + this.lista.length;
+                }
+            }
+        });
+    /script>
+
+<hr>
+<strong>#21: Bind de class</strong>
+
+
+    <div id="v_21">
+
+        <div class="oculto" v-bind:class="{ativo:isError, warning:isWarning, error:isDanger}">
+            {{ errorMsg }}
+        </div>
+        
+    </div>
+    <script>
+        let v_21 = new Vue({
+            el:'#v_21',
+            data:{
+                isError:false,
+                isWarning:false,
+                isDanger:false,
+                errorMsg:'Mensagem de erro'
+
+            },
+            methods:{
+                showWarning:function(msg){
+                    this.isError = true;
+                    this.isWarning = true;
+                    this.isDanger = false;
+                    this.errorMsg = msg;
+                },
+                showError:function(msg){
+                    this.isError = true;
+                    this.isWarning = false;
+                    this.isDanger = true;
+                    this.errorMsg = msg;
+                }
+            }
+        });
+    </script>
+    <style>
+        .oculto { display: none; }
+        .ativo { border: 2px solid black; display: block; }
+        .warning { background-color: blue; color: white; }
+        .error { background-color: red; color: white; }
+    </style>
+    div id="v_21">
+
+        div class="oculto" v-bind:class="{ativo:isError, warning:isWarning, error:isDanger}">
+            {{ errorMsg }}
+        /div>
+        
+    /div>
+    script>
+        let v_21 = new Vue({
+            el:'#v_21',
+            data:{
+                isError:false,
+                isWarning:false,
+                isDanger:false,
+                errorMsg:'Mensagem de erro'
+
+            },
+            methods:{
+                showWarning:function(msg){
+                    this.isError = true;
+                    this.isWarning = true;
+                    this.isDanger = false;
+                    this.errorMsg = msg;
+                },
+                showError:function(msg){
+                    this.isError = true;
+                    this.isWarning = false;
+                    this.isDanger = true;
+                    this.errorMsg = msg;
+                }
+            }
+        });
+        v_21.showError('mensagem de erro');
+        v_21.showWarning('mensagem de aviso');
+    /script>
+    style>
+        .oculto { display: none; }
+        .ativo { border: 2px solid black; display: block; }
+        .warning { background-color: blue; color: white; }
+        .error { background-color: red; color: white; }
+    /style>
+
 #22: Bind de class com prop computada
 #23: Bind inline
 #24: Renderização condicional
