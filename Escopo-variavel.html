@@ -11,70 +11,34 @@
 
 
 <hr>
-<strong>22: Bind de class com prop computada</strong>
+<strong>#23: Bind inline</strong>
 
+    <div id="v_23">
 
-    <div id="v_22">
-
-        <div class="oculto" v-bind:class="errorDivClass">
-            {{ errorMsg }}
+        <div v-bind:style="[avisoBase, avisoError]">
+            {{ aviso }}
         </div>
         
     </div>
     <script>
-        let v_22 = new Vue({
-            el:'#v_22',
+        let v_23 = new Vue({
+            el:'#v_23',
             data:{
-                errorMsg:'',
-                errorType:''
-            },
-            computed:{
-                errorDivClass:function(){
-                    let r = {
-                        ativo:false,
-                        warning:false,
-                        error:false
-                    };
-
-                    if(this.errorMsg != ''){
-                        r.ativo = true;
-                    }
-
-                    switch(this.errorType){
-                        case 'warning':
-                            r.warning = true;
-                            r.error = false;
-                            break;
-                        case 'error':
-                            r.warning = false;
-                            r.error = true;
-                            break;
-                    }
-
-                    return r;
-                }
-            },
-            methods:{
-                showWarning:function(msg){
-                    this.errorMsg = msg;
-                    this.errorType = 'warning';
+                aviso:'mensagem de aviso',
+                avisoBase:{
+                    border:'1px solid #000',
+                    fontSize:'20px',
+                    padding:'10px'
                 },
-                showError:function(msg){
-                    this.errorMsg = msg;
-                    this.errorType = 'error';
+                avisoError:{
+                    backgroundColor:'#f00',
+                    color:'#fff'
                 }
 
             }
         });
-        v_22.showError('Error: mensagem de erro');
-        // v_22.showWarning('Warning: mensagem de aviso');
+        
     </script>
-    <style>
-        .oculto { display: none; }
-        .ativo { border: 2px solid black; display: block; }
-        .warning { background-color: blue; color: white; }
-        .error { background-color: red; color: white; }
-    </style>
 
 
 </pre>
