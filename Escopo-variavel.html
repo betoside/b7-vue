@@ -11,43 +11,63 @@
 
 
 <hr>
-<strong>#21: Bind de class</strong>
+<strong>22: Bind de class com prop computada</strong>
 
 
-    <div id="v_21">
+    <div id="v_22">
 
-        <div class="oculto" v-bind:class="{ativo:isError, warning:isWarning, error:isDanger}">
+        <div class="oculto" v-bind:class="errorDivClass">
             {{ errorMsg }}
         </div>
         
     </div>
     <script>
-        let v_21 = new Vue({
-            el:'#v_21',
+        let v_22 = new Vue({
+            el:'#v_22',
             data:{
-                isError:false,
-                isWarning:false,
-                isDanger:false,
-                errorMsg:'Mensagem de erro'
+                errorMsg:'',
+                errorType:''
+            },
+            computed:{
+                errorDivClass:function(){
+                    let r = {
+                        ativo:false,
+                        warning:false,
+                        error:false
+                    };
 
+                    if(this.errorMsg != ''){
+                        r.ativo = true;
+                    }
+
+                    switch(this.errorType){
+                        case 'warning':
+                            r.warning = true;
+                            r.error = false;
+                            break;
+                        case 'error':
+                            r.warning = false;
+                            r.error = true;
+                            break;
+                    }
+
+                    return r;
+                }
             },
             methods:{
                 showWarning:function(msg){
-                    this.isError = true;
-                    this.isWarning = true;
-                    this.isDanger = false;
                     this.errorMsg = msg;
+                    this.errorType = 'warning';
                 },
                 showError:function(msg){
-                    this.isError = true;
-                    this.isWarning = false;
-                    this.isDanger = true;
                     this.errorMsg = msg;
+                    this.errorType = 'error';
                 }
+
             }
         });
-        v_21.showError('mensagem de erro');
-        v_21.showWarning('mensagem de aviso');
+        v_22.showError('Error: mensagem de erro');
+        // v_22.showWarning('Warning: mensagem de aviso');
     </script>
     <style>
         .oculto { display: none; }

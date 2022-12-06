@@ -1246,7 +1246,126 @@
         .error { background-color: red; color: white; }
     /style>
 
-#22: Bind de class com prop computada
+<hr>
+<strong>#22: Bind de class com prop computada</strong>
+
+    <div id="v_22">
+
+        <div class="oculto" v-bind:class="errorDivClass">
+            {{ errorMsg }}
+        </div>
+        
+    </div>
+    <script>
+        let v_22 = new Vue({
+            el:'#v_22',
+            data:{
+                errorMsg:'',
+                errorType:''
+            },
+            computed:{
+                errorDivClass:function(){
+                    let r = {
+                        ativo:false,
+                        warning:false,
+                        error:false
+                    };
+
+                    if(this.errorMsg != ''){
+                        r.ativo = true;
+                    }
+
+                    switch(this.errorType){
+                        case 'warning':
+                            r.warning = true;
+                            r.error = false;
+                            break;
+                        case 'error':
+                            r.warning = false;
+                            r.error = true;
+                            break;
+                    }
+
+                    return r;
+                }
+            },
+            methods:{
+                showWarning:function(msg){
+                    this.errorMsg = msg;
+                    this.errorType = 'warning';
+                },
+                showError:function(msg){
+                    this.errorMsg = msg;
+                    this.errorType = 'error';
+                }
+
+            }
+        });
+        v_22.showError('Error: mensagem de erro');
+        // v_22.showWarning('Warning: mensagem de aviso');
+    </script>
+    <style>
+        .oculto { display: none; }
+        .ativo { border: 2px solid black; display: block; }
+        .warning { background-color: blue; color: white; }
+        .error { background-color: red; color: white; }
+    </style>
+    div id="v_22">
+
+        div class="oculto" v-bind:class="errorDivClass">
+            {{ errorMsg }}
+        /div>
+        
+    /div>
+    script>
+        let v_22 = new Vue({
+            el:'#v_22',
+            data:{
+                errorMsg:'',
+                errorType:''
+            },
+            computed:{
+                errorDivClass:function(){
+                    let r = {
+                        ativo:false,
+                        warning:false,
+                        error:false
+                    };
+
+                    if(this.errorMsg != ''){
+                        r.ativo = true;
+                    }
+
+                    switch(this.errorType){
+                        case 'warning':
+                            r.warning = true;
+                            r.error = false;
+                            break;
+                        case 'error':
+                            r.warning = false;
+                            r.error = true;
+                            break;
+                    }
+
+                    return r;
+                }
+            },
+            methods:{
+                showWarning:function(msg){
+                    this.errorMsg = msg;
+                    this.errorType = 'warning';
+                },
+                showError:function(msg){
+                    this.errorMsg = msg;
+                    this.errorType = 'error';
+                }
+
+            }
+        });
+        v_22.showError('Error: mensagem de erro');
+        // v_22.showWarning('Warning: mensagem de aviso');
+    /script>
+
 #23: Bind inline
 #24: Renderização condicional
 #25: Renderização de lista
