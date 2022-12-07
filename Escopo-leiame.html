@@ -1730,8 +1730,101 @@
         });
     /script>
     
-#29: Eventos de clique (1/2)
-#30: Eventos de clique (2/2)
+<hr>
+<strong>#29: Eventos de clique (1/2)</strong>
+
+    <div id="v_29">
+
+        <form v-on:submit.prevent="algo">
+            <input type="text">
+            <button v-on:click="addContagem(3, $event)">Clique aqui para enviar</button>
+        </form>
+
+        <div class="area" v-on:click.self="algo">
+            <button>clique em mim: self</button>
+        </div>
+
+        <div class="area" v-on:click.once="algo">
+            <button>clique em mim: once</button>
+        </div>
+
+        <p>A contagem é: {{ contagem }} </p>
+        
+    </div>
+
+    <style>
+        .area{
+            height: 50px;
+            background-color: #ccc;
+        }
+    </style>
+    <script>
+        let v_29 = new Vue({
+            el:'#v_29',
+            data:{
+                contagem:0                
+            },
+            methods:{
+                addContagem:function(x, e){
+
+                    // e.preventDefault();
+                    this.contagem += x;
+
+                },
+                algo:function(){
+                    this.contagem++;
+                }
+            }
+        });
+    </script>
+    div id="v_29">
+
+        form v-on:submit.prevent="algo">
+            input type="text">
+            button v-on:click="addContagem(3, $event)">Clique aqui para enviar/button>
+        /form>
+
+        div class="area" v-on:click.self="algo">
+            button>clique em mim: self/button>
+        /div>
+
+        div class="area" v-on:click.once="algo">
+            button>clique em mim: once/button>
+        /div>
+
+        p>A contagem é: {{ contagem }} /p>
+        
+    /div>
+
+    style>
+        .area{
+            height: 50px;
+            background-color: #ccc;
+        }
+    /style>
+    script>
+        let v_29 = new Vue({
+            el:'#v_29',
+            data:{
+                contagem:0                
+            },
+            methods:{
+                addContagem:function(x, e){
+
+                    // e.preventDefault();
+                    this.contagem += x;
+
+                },
+                algo:function(){
+                    this.contagem++;
+                }
+            }
+        });
+    /script>
+    
+<hr>
+<strong>#30: Eventos de clique (2/2)</strong>
+
 #31: Eventos de teclado
 #32: Eventos com CTRL, ALT, SHIFT, etc..
 #33: Eventos de botões do mouse
