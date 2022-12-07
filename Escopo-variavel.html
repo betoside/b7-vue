@@ -11,39 +11,51 @@
 
 
 <hr>
-<strong>#38: Componente com ação simples</strong>
+<strong>#39: Componente global vs local</strong>
 
-    componente pede que retorne um único elemento.
-    pode ser uma DIV como encapsulador e único elemento.
+    global: pode ser usado em qq instancia do vue enqto estiver ativa
 
-    <div id="v_37">
-
+    <div id="v_39_1">
         <contador></contador>
-        <contador></contador>
-        <contador></contador>
-        
+        <br>
+        <menu-superior></menu-superior>
+        <div>
+            {{ titulo }}
+        </div>
     </div>
+
+    <div id="v_39_2">
+        <contador></contador>
+        <br>
+        <!-- <menu-superior></menu-superior> -->
+        <div>{{ titulo }}</div>
+    </div>
+
     <script type="text/javascript">
 
         Vue.component('contador', {
-            data:function(){
-                return {
-                    c:0,
-                    texto:'Contar click'
-                }
-            },
-            methods:{
-                aumentar:function(){
-                    this.c++;
-                }
-            },
-            template:'<div><span>{{c}}x</span> <button v-on:click="aumentar">{{ texto }}</button></div>'
+            template:'<button>Click aqui</button>'
+
         });
 
-        let v_37 = new Vue({
-            el:'#v_37',
+        let menuSuperior = {
+            template:'<span>MENU</span>'
+        };
+
+        let v_39_1 = new Vue({
+            el:'#v_39_1',
             data:{
-                
+                titulo:'título 1 do site'
+            },
+            components:{
+                'menu-superior':menuSuperior
+            }
+        });
+
+        let v_39_2 = new Vue({
+            el:'#v_39_2',
+            data:{
+                titulo:'título 2 do site'
             }
         });
     </script>

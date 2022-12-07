@@ -2501,7 +2501,100 @@
         });
     /script>
 
-#39: Componente global vs local
+<hr>
+<strong>#39: Componente global vs local</strong>
+
+    global: pode ser usado em qq instancia do vue enqto estiver ativa
+
+    <div id="v_39_1">
+        <contador></contador>
+        <br>
+        <menu-superior></menu-superior>
+        <div>
+            {{ titulo }}
+        </div>
+    </div>
+
+    <div id="v_39_2">
+        <contador></contador>
+        <br>
+        <!-- <menu-superior></menu-superior> -->
+        <div>{{ titulo }}</div>
+    </div>
+
+    <script type="text/javascript">
+
+        Vue.component('contador', {
+            template:'<button>Click aqui</button>'
+
+        });
+
+        let menuSuperior = {
+            template:'<span>MENU</span>'
+        };
+
+        let v_39_1 = new Vue({
+            el:'#v_39_1',
+            data:{
+                titulo:'título 1 do site'
+            },
+            components:{
+                'menu-superior':menuSuperior
+            }
+        });
+
+        let v_39_2 = new Vue({
+            el:'#v_39_2',
+            data:{
+                titulo:'título 2 do site'
+            }
+        });
+    </script>
+    <div id="v_39_1">
+        <contador></contador>
+        <br>
+        <menu-superior></menu-superior>
+        <div>
+            {{ titulo }}
+        </div>
+    </div>
+
+    div id="v_39_2">
+        contador>/contador>
+        br>
+        !-- menu-superior>/menu-superior> -->
+        div>{{ titulo }}/div>
+    /div>
+
+    script type="text/javascript">
+
+        Vue.component('contador', {
+            template:'button>Click aqui/button>'
+
+        });
+
+        let menuSuperior = {
+            template:'span>MENU/span>'
+        };
+
+        let v_39_1 = new Vue({
+            el:'#v_39_1',
+            data:{
+                titulo:'título 1 do site'
+            },
+            components:{
+                'menu-superior':menuSuperior
+            }
+        });
+
+        let v_39_2 = new Vue({
+            el:'#v_39_2',
+            data:{
+                titulo:'título 2 do site'
+            }
+        });
+    /script>
+
 #40: Passando props ao componente
 #41: Componente com conteúdo
 #42: Executando funções fora do componente
