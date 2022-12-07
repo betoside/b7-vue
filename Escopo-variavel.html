@@ -11,29 +11,28 @@
 
 
 <hr>
-<strong>#26: Detecção de mudança de array</strong>
+<strong>#27: Detecção de mudança de objeto</strong>
 
-    <div id="v_26">
+    <div id="v_27">
 
-        <div v-for="item in lista">
-            {{ item }}
+        <div v-for="(item, key) in info">
+            {{ key+': '+item }}
         </div>
         
     </div>
     <script>
-        let v_26 = new Vue({
-            el:'#v_26',
+        let v_27 = new Vue({
+            el:'#v_27',
             data:{
-                lista:[
-                    'Adriano Fire',
-                    'Renato Alviverde',
-                    'Bruno Buru'
-                ]
+                info:{
+                    nome:'boniek',
+                    idade:99
+                }
             }
         });
-        v_26.lista.push('Fábio Smurf');
-        v_26.lista[0] = 'Adriano Fireguri';
-        Vue.set(v_26.lista, 1, 'Renato Palmeirense');
+
+        v_27.info.sapateiro = 'Nelson'; // isso não funciona 
+        Vue.set(v_27.info, 'pai', 'nelson'); // isso funciona
     </script>
 
 
