@@ -11,73 +11,39 @@
 
 
 <hr>
-<strong>#31: Eventos de teclado</strong>
+<strong>#33: Eventos de botões do mouse</strong>
 
-    <div id="v_31">
+    <div id="v_33">
 
-        Digite qq coisa para aumentar a contagem:
-        <input type="text" v-on:keyup="teclou($event)">
+        Botão direito do mouse, scroll, bolinha.
+        Botões específicos de mouse
+
+        <button v-on:click.left="teclouL">clique (botão esquerdo)</button>
         <br>
 
-        Digite "k" para contabilizar:
-        <input type="text" v-on:keyup.75="teclouK()">
-        v-on:keyup.enter
-        v-on:keyup.tab
-        v-on:keyup.delete
-        v-on:keyup.esc
-        v-on:keyup.space
-        v-on:keyup.up
-        v-on:keyup.down
-        v-on:keyup.left
-        v-on:keyup.right
+        <button v-on:click.right.prevent="teclouR">clique (botão direito)</button>
         <br>
 
-        <form v-on:submit.prevent="algo">
-            <input type="text">
-            <button v-on:click="addContagem(3, $event)">Clique aqui para enviar</button>
-        </form>
-
-        <div class="area" v-on:click.self="algo">
-            <button>clique em mim: self</button>
-        </div>
-
-        <div class="area" v-on:click.once="algo">
-            <button>clique em mim: once</button>
-        </div>
+        <button v-on:click.middle="teclouMiddle">clique (botão do meio)</button>
+        <br>
 
         <p>A contagem é: {{ contagem }} </p>
         
     </div>
-
-    <style>
-        .area{
-            height: 50px;
-            background-color: #ccc;
-        }
-    </style>
     <script>
-        let v_31 = new Vue({
-            el:'#v_31',
+        let v_33 = new Vue({
+            el:'#v_33',
             data:{
                 contagem:0                
             },
             methods:{
-                addContagem:function(x, e){
-
-                    // e.preventDefault();
-                    this.contagem += x;
-
-                },
-                algo:function(){
+                teclouL:function(){
                     this.contagem++;
                 },
-                teclou:function(e){
-                    console.log(e.keyCode);
-                    if(e.keyCode == 13){
-                        this.contagem++;
-                    }
+                teclouR:function(){
+                    this.contagem++;
                 },
-                teclouK:function(){
+                teclouMiddle:function(){
                     this.contagem++;
                 }
             }
