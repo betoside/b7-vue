@@ -1443,7 +1443,7 @@
             Você ganhou
             <strong>parabéns</strong>
         </template>
-        <template v-else-if="">
+        <template v-else-if="qq">
             ...
         </template>
         <template v-else>
@@ -1456,7 +1456,8 @@
         let v_24 = new Vue({
             el:'#v_24',
             data:{
-                ganhou:false
+                ganhou:false,
+                qq:false
             }
         });
     </script>
@@ -1491,7 +1492,72 @@
     /script>
 
 
-#25: Renderização de lista
+<hr>
+<strong>#25: Renderização de lista</strong>
+
+    <div id="v_25">
+
+        <div v-for="(value, key, index) in objetoQualquer">
+            {{ index }} - {{ key }} - {{ value }}
+        </div>
+        --------
+
+        <div v-for="(item, index) in lista">
+            item: #{{ index }} {{ item.nome }}
+        </div>
+        
+    </div>
+    <script>
+        let v_25 = new Vue({
+            el:'#v_25',
+            data:{
+                lista:[
+                    {nome:'márcio'},
+                    {nome:'zé maria'},
+                    {nome:'marta'},
+                    {nome:'eurico'}
+                ],
+                objetoQualquer:{
+                    nome:'JAC',
+                    idade:74,
+                    pai:'João Olímpio',
+                    mae:'Célia'
+                }
+            }
+        });
+    </script>
+    div id="v_25">
+
+        div v-for="(value, key, index) in objetoQualquer">
+            {{ index }} - {{ key }} - {{ value }}
+        /div>
+        --------
+
+        div v-for="(item, index) in lista">
+            item: #{{ index }} {{ item.nome }}
+        /div>
+        
+    /div>
+    script>
+        let v_25 = new Vue({
+            el:'#v_25',
+            data:{
+                lista:[
+                    {nome:'márcio'},
+                    {nome:'zé maria'},
+                    {nome:'marta'},
+                    {nome:'eurico'}
+                ],
+                objetoQualquer:{
+                    nome:'JAC',
+                    idade:74,
+                    pai:'João Olímpio',
+                    mae:'Célia'
+                }
+            }
+        });
+    /script>
+
 #26: Detecção de mudança de array
 #27: Detecção de mudança de objeto
 #28: Exercício: Filtrando resultados de array

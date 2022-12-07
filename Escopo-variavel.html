@@ -11,38 +11,36 @@
 
 
 <hr>
-<strong>#24: Renderização condicional</strong>
+<strong>#25: Renderização de lista</strong>
 
-    v-inf
-    v-show
-    template
+    <div id="v_25">
 
-    <div id="v_24">
+        <div v-for="(value, key, index) in objetoQualquer">
+            {{ index }} - {{ key }} - {{ value }}
+        </div>
+        --------
 
-        <div v-if="ganhou">if: Você ganhou</div>
-        <div v-else>if: Você perdeu</div>
-
-        <div v-show="ganhou">show: ganhou</div>
-        <div v-show="!ganhou">show: perdeu</div>
-
-        <template v-if="ganhou">
-            Você ganhou
-            <strong>parabéns</strong>
-        </template>
-        <template v-else-if="">
-            ...
-        </template>
-        <template v-else>
-            Você perdeu
-            <strong>sorry</strong>
-        </template>
+        <div v-for="(item, index) in lista">
+            item: #{{ index }} {{ item.nome }}
+        </div>
         
     </div>
     <script>
-        let v_24 = new Vue({
-            el:'#v_24',
+        let v_25 = new Vue({
+            el:'#v_25',
             data:{
-                ganhou:false
+                lista:[
+                    {nome:'márcio'},
+                    {nome:'zé maria'},
+                    {nome:'marta'},
+                    {nome:'eurico'}
+                ],
+                objetoQualquer:{
+                    nome:'JAC',
+                    idade:74,
+                    pai:'João Olímpio',
+                    mae:'Célia'
+                }
             }
         });
     </script>
