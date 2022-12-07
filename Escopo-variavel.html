@@ -11,33 +11,31 @@
 
 
 <hr>
-<strong>#35: Binding com valores</strong>
+<strong>#36: Binding com modificadores</strong>
 
-    <div id="v_35">
-
-        <input type="checkbox" v-model="marcado" true-value="sim" false-value="nao">
+    <div id="v_36">
 
         <div>
-            <strong>Marcado:</strong> {{ marcado }}
+            <input type="number" v-model.number="idade">
         </div>
+        v_36.idade
+        48
+
+        typeof v_36.idade
+        'number'
 
         <div>
-            <select v-model="selecionado">
-                <option v-bind:value="{nome: 'Alberto', idade:40}">Opção 1</option>
-                <option v-bind:value="{nome: 'Pirata', idade:50}">Opção 2</option>
-                <option v-bind:value="{nome: 'Munari', idade:60}">Opção 3</option>
-            </select>
+            <input type="nome" v-model.trim="nome">
             <br>
-            Selecionado:  {{ selecionado.nome }}, {{ selecionado }}
+            nome: {{ nome }}
         </div>
-        
     </div>
     <script>
-        let v_35 = new Vue({
-            el:'#v_35',
+        let v_36 = new Vue({
+            el:'#v_36',
             data:{
-                marcado:'sim',
-                selecionado:''
+                idade:'',
+                nome:''
             }
         });
     </script>
