@@ -11,40 +11,35 @@
 
 
 <hr>
-<strong>#28: Exercício: Filtrando resultados de array</strong>
+<strong>#29: Eventos de clique (1/2)</strong>
 
-    <div id="v_28">
+    <div id="v_29">
 
-        <input v-model="busca">
+        <form v-on:submit.prevent="algo">
+            <input type="text">
+            <button v-on:click="addContagem(3, $event)">Clique aqui para enviar</button>
 
-        <ul>
-            <li v-for="item in nomes">{{ item }}</li>
-        </ul>
+        </form>
+
+
+        <p>A contagem é: {{ contagem }} </p>
         
     </div>
     <script>
-        let v_28 = new Vue({
-            el:'#v_28',
+        let v_29 = new Vue({
+            el:'#v_29',
             data:{
-                busca:'',
-                nomes:['joaquim', 'gabriel', 'kaiane', 'juliana', 'Natalia', 'gustavo']
+                contagem:0                
             },
-            computed:{
-                nomesFiltrados:function(){
+            methods:{
+                addContagem:function(x, e){
 
-                    return this.nomes.filter(function(nome){
-                        if(this.busca != ''){
-                            // return false;
-                            if(nome.indexOf(this.busca) > -1){
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        } else {
-                            return true;
-                        }
-                    }, this);
+                    // e.preventDefault();
+                    this.contagem += x;
 
+                },
+                algo:function(){
+                    this.contagem++;
                 }
             }
         });
