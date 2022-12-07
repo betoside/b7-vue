@@ -2431,8 +2431,76 @@
             }
         });
     /script>
-    
-#38: Componente com ação simples
+
+<hr>
+<strong>#38: Componente com ação simples</strong>
+
+    componente pede que retorne um único elemento.
+    pode ser uma DIV como encapsulador e único elemento.
+
+    <div id="v_37">
+
+        <contador></contador>
+        <contador></contador>
+        <contador></contador>
+        
+    </div>
+    <script type="text/javascript">
+
+        Vue.component('contador', {
+            data:function(){
+                return {
+                    c:0,
+                    texto:'Contar click'
+                }
+            },
+            methods:{
+                aumentar:function(){
+                    this.c++;
+                }
+            },
+            template:'<div><span>{{c}}x</span> <button v-on:click="aumentar">{{ texto }}</button></div>'
+        });
+
+        let v_37 = new Vue({
+            el:'#v_37',
+            data:{
+                
+            }
+        });
+    </script>
+    div id="v_37">
+
+        contador>/contador>
+        contador>/contador>
+        contador>/contador>
+        
+    /div>
+    script type="text/javascript">
+
+        Vue.component('contador', {
+            data:function(){
+                return {
+                    c:0,
+                    texto:'Contar click'
+                }
+            },
+            methods:{
+                aumentar:function(){
+                    this.c++;
+                }
+            },
+            template:'div>span>{{c}}x/span> button v-on:click="aumentar">{{ texto }}/button>/div>'
+        });
+
+        let v_37 = new Vue({
+            el:'#v_37',
+            data:{
+                
+            }
+        });
+    /script>
+
 #39: Componente global vs local
 #40: Passando props ao componente
 #41: Componente com conteúdo

@@ -11,22 +11,33 @@
 
 
 <hr>
-<strong>#37: Criando os próprios componentes</strong>
+<strong>#38: Componente com ação simples</strong>
+
+    componente pede que retorne um único elemento.
+    pode ser uma DIV como encapsulador e único elemento.
 
     <div id="v_37">
 
-        <menu-superior></menu-superior>
+        <contador></contador>
+        <contador></contador>
+        <contador></contador>
         
     </div>
     <script type="text/javascript">
 
-        Vue.component('menu-superior', {
+        Vue.component('contador', {
             data:function(){
-                return{
-                    texto:'Clique e vá para o Titanzinho'
+                return {
+                    c:0,
+                    texto:'Contar click'
                 }
             },
-            template:'<button>{{ texto }}</button>'
+            methods:{
+                aumentar:function(){
+                    this.c++;
+                }
+            },
+            template:'<div><span>{{c}}x</span> <button v-on:click="aumentar">{{ texto }}</button></div>'
         });
 
         let v_37 = new Vue({
