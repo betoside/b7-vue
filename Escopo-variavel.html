@@ -11,31 +11,49 @@
 
 
 <hr>
-<strong>#40: Passando props ao componente</strong>
+<strong>#41: Componente com conteúdo</strong>
 
-    <div id="v_40">
+    <div id="v_41">
+        <aviso>Mensagem de aviso</aviso>
 
-        <postagem titulo="Post 1 do blog" corpo="Esse texto é o detalhe da notícia 1"></postagem>
-        <postagem titulo="Post 2 do blog" corpo="Esse texto é o detalhe da notícia 2"></postagem>
-        <postagem titulo="Post 3 do blog" corpo="Esse texto é o detalhe da notícia 3"></postagem>
-        <postagem titulo="Post 4 do blog" corpo="Esse texto é o detalhe da notícia 4"></postagem>
-        
-        
+        <postagem>
+            <template slot="titulo">
+                Título da postagem 1
+            </template>
+            <template slot="corpo">
+                Corpo da postagem
+                <br>
+                <button>Botão da postagem</button>
+                <br>
+                <img src="https://www.google.com.br/google.jpg" alt="">
+            </template>
+        </postagem>
     </div>
+    <style>
+        .aviso{
+            border: 2px solid #000;
+            padding: 20px;
+            background-color: #f00;
+            color: #fff;
+        }
+    </style>
 
     <script type="text/javascript">
+        Vue.component('aviso',{
+            template:'<div class="aviso"><slot></slot></div>'
+        });
+        
         let postagem = {
-            props:['titulo', 'corpo'],
-            data:function(){
-                return {
-                    exemplo:'alguma informação ou dado que está vindo interno'
-                }
-            },
-            template:'<div><h5>{{ titulo }} </h5><p>{{ corpo }} </p><p>{{ exemplo }} </p></div>'
+            template:`
+                <div>
+                    <h5><slot name='titulo'></slot></h5>
+                    <p><slot name='corpo'></slot></p>
+                </div>
+            `
         }
 
-        let v_40 = new Vue({
-            el:'#v_40',
+        let v_41 = new Vue({
+            el:'#v_41',
             data:{
 
             },

@@ -2438,7 +2438,7 @@
     componente pede que retorne um único elemento.
     pode ser uma DIV como encapsulador e único elemento.
 
-    <div id="v_37">
+    <div id="v_38">
 
         <contador></contador>
         <contador></contador>
@@ -2462,14 +2462,14 @@
             template:'<div><span>{{c}}x</span> <button v-on:click="aumentar">{{ texto }}</button></div>'
         });
 
-        let v_37 = new Vue({
-            el:'#v_37',
+        let v_38 = new Vue({
+            el:'#v_38',
             data:{
                 
             }
         });
     </script>
-    div id="v_37">
+    div id="v_38">
 
         contador>/contador>
         contador>/contador>
@@ -2493,8 +2493,8 @@
             template:'div>span>{{c}}x/span> button v-on:click="aumentar">{{ texto }}/button>/div>'
         });
 
-        let v_37 = new Vue({
-            el:'#v_37',
+        let v_38 = new Vue({
+            el:'#v_38',
             data:{
                 
             }
@@ -2664,7 +2664,110 @@
     /script>
 
 
-#41: Componente com conteúdo
+<hr>
+<strong>#41: Componente com conteúdo</strong>
+
+    <div id="v_41">
+        <aviso>Mensagem de aviso</aviso>
+
+        <postagem>
+            <template slot="titulo">
+                Título da postagem 1
+            </template>
+            <template slot="corpo">
+                Corpo da postagem
+                <br>
+                <button>Botão da postagem</button>
+                <br>
+                <img src="https://www.google.com.br/google.jpg" alt="">
+            </template>
+        </postagem>
+    </div>
+    <style>
+        .aviso{
+            border: 2px solid #000;
+            padding: 20px;
+            background-color: #f00;
+            color: #fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+        Vue.component('aviso',{
+            template:'<div class="aviso"><slot></slot></div>'
+        });
+        
+        let postagem = {
+            template:`
+                <div>
+                    <h5><slot name='titulo'></slot></h5>
+                    <p><slot name='corpo'></slot></p>
+                </div>
+            `
+        }
+
+        let v_41 = new Vue({
+            el:'#v_41',
+            data:{
+
+            },
+            components:{
+                postagem:postagem
+            }
+        });
+        
+    </script>
+    div id="v_41">
+        aviso>Mensagem de aviso/aviso>
+
+        postagem>
+            template slot="titulo">
+                Título da postagem 1
+            /template>
+            template slot="corpo">
+                Corpo da postagem
+                br>
+                button>Botão da postagem/button>
+                br>
+                img src="https://www.google.com.br/google.jpg" alt="">
+            /template>
+        /postagem>
+    /div>
+    style>
+        .aviso{
+            border: 2px solid #000;
+            padding: 20px;
+            background-color: #f00;
+            color: #fff;
+        }
+    /style>
+
+    script type="text/javascript">
+        Vue.component('aviso',{
+            template:'div class="aviso">slot>/slot>/div>'
+        });
+        
+        let postagem = {
+            template:`
+                div>
+                    h5>slot name='titulo'>/slot>/h5>
+                    p>slot name='corpo'>/slot>/p>
+                /div>
+            `
+        }
+
+        let v_41 = new Vue({
+            el:'#v_41',
+            data:{
+
+            },
+            components:{
+                postagem:postagem
+            }
+        });
+        
+    /script>
+
 #42: Executando funções fora do componente
 #43: Exercicio: To-do com componentes
 #44: Solução: To-do com componentes
