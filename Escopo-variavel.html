@@ -11,31 +11,28 @@
 
 
 <hr>
-<strong>#36: Binding com modificadores</strong>
+<strong>#37: Criando os próprios componentes</strong>
 
-    <div id="v_36">
+    <div id="v_37">
 
-        <div>
-            <input type="number" v-model.number="idade">
-        </div>
-        v_36.idade
-        48
-
-        typeof v_36.idade
-        'number'
-
-        <div>
-            <input type="nome" v-model.trim="nome">
-            <br>
-            nome: {{ nome }}
-        </div>
+        <menu-superior></menu-superior>
+        
     </div>
-    <script>
-        let v_36 = new Vue({
-            el:'#v_36',
+    <script type="text/javascript">
+
+        Vue.component('menu-superior', {
+            data:function(){
+                return{
+                    texto:'Clique e vá para o Titanzinho'
+                }
+            },
+            template:'<button>{{ texto }}</button>'
+        });
+
+        let v_37 = new Vue({
+            el:'#v_37',
             data:{
-                idade:'',
-                nome:''
+                
             }
         });
     </script>
