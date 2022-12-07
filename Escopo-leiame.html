@@ -1558,7 +1558,54 @@
         });
     /script>
 
-#26: Detecção de mudança de array
+<hr>
+<strong>#26: Detecção de mudança de array</strong>
+
+    <div id="v_26">
+
+        <div v-for="item in lista">
+            {{ item }}
+        </div>
+        
+    </div>
+    <script>
+        let v_26 = new Vue({
+            el:'#v_26',
+            data:{
+                lista:[
+                    'Adriano Fire',
+                    'Renato Alviverde',
+                    'Bruno Buru'
+                ]
+            }
+        });
+        v_26.lista.push('Fábio Smurf');
+        Vue.set(v_26.lista, 1, 'Renato Palmeirense');
+    </script>
+
+    div id="v_26">
+
+        div v-for="item in lista">
+            {{ item }}
+        /div>
+        
+    /div>
+    script>
+        let v_26 = new Vue({
+            el:'#v_26',
+            data:{
+                lista:[
+                    'Adriano Fire',
+                    'Renato Alviverde',
+                    'Bruno Buru'
+                ]
+            }
+        });
+        v_26.lista.push('Fábio Smurf');
+        v_26.lista[0] = 'Adriano Fireguri';
+        Vue.set(v_26.lista, 1, 'Renato Palmeirense');
+    /script>
+
 #27: Detecção de mudança de objeto
 #28: Exercício: Filtrando resultados de array
 #29: Eventos de clique (1/2)

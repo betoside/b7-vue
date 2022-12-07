@@ -11,38 +11,29 @@
 
 
 <hr>
-<strong>#25: Renderização de lista</strong>
+<strong>#26: Detecção de mudança de array</strong>
 
-    <div id="v_25">
+    <div id="v_26">
 
-        <div v-for="(value, key, index) in objetoQualquer">
-            {{ index }} - {{ key }} - {{ value }}
-        </div>
-        --------
-
-        <div v-for="(item, index) in lista">
-            item: #{{ index }} {{ item.nome }}
+        <div v-for="item in lista">
+            {{ item }}
         </div>
         
     </div>
     <script>
-        let v_25 = new Vue({
-            el:'#v_25',
+        let v_26 = new Vue({
+            el:'#v_26',
             data:{
                 lista:[
-                    {nome:'márcio'},
-                    {nome:'zé maria'},
-                    {nome:'marta'},
-                    {nome:'eurico'}
-                ],
-                objetoQualquer:{
-                    nome:'JAC',
-                    idade:74,
-                    pai:'João Olímpio',
-                    mae:'Célia'
-                }
+                    'Adriano Fire',
+                    'Renato Alviverde',
+                    'Bruno Buru'
+                ]
             }
         });
+        v_26.lista.push('Fábio Smurf');
+        v_26.lista[0] = 'Adriano Fireguri';
+        Vue.set(v_26.lista, 1, 'Renato Palmeirense');
     </script>
 
 
