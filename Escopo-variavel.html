@@ -11,28 +11,43 @@
 
 
 <hr>
-<strong>#27: Detecção de mudança de objeto</strong>
+<strong>#28: Exercício: Filtrando resultados de array</strong>
 
-    <div id="v_27">
+    <div id="v_28">
 
-        <div v-for="(item, key) in info">
-            {{ key+': '+item }}
-        </div>
+        <input v-model="busca">
+
+        <ul>
+            <li v-for="item in nomes">{{ item }}</li>
+        </ul>
         
     </div>
     <script>
-        let v_27 = new Vue({
-            el:'#v_27',
+        let v_28 = new Vue({
+            el:'#v_28',
             data:{
-                info:{
-                    nome:'boniek',
-                    idade:99
+                busca:'',
+                nomes:['joaquim', 'gabriel', 'kaiane', 'juliana', 'Natalia', 'gustavo']
+            },
+            computed:{
+                nomesFiltrados:function(){
+
+                    return this.nomes.filter(function(nome){
+                        if(this.busca != ''){
+                            // return false;
+                            if(nome.indexOf(this.busca) > -1){
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            return true;
+                        }
+                    }, this);
+
                 }
             }
         });
-
-        v_27.info.sapateiro = 'Nelson'; // isso não funciona 
-        Vue.set(v_27.info, 'pai', 'nelson'); // isso funciona
     </script>
 
 
