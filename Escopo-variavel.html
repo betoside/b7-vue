@@ -11,53 +11,39 @@
 
 
 <hr>
-<strong>#39: Componente global vs local</strong>
+<strong>#40: Passando props ao componente</strong>
 
-    global: pode ser usado em qq instancia do vue enqto estiver ativa
+    <div id="v_40">
 
-    <div id="v_39_1">
-        <contador></contador>
-        <br>
-        <menu-superior></menu-superior>
-        <div>
-            {{ titulo }}
-        </div>
-    </div>
-
-    <div id="v_39_2">
-        <contador></contador>
-        <br>
-        <!-- <menu-superior></menu-superior> -->
-        <div>{{ titulo }}</div>
+        <postagem titulo="Post 1 do blog" corpo="Esse texto é o detalhe da notícia 1"></postagem>
+        <postagem titulo="Post 2 do blog" corpo="Esse texto é o detalhe da notícia 2"></postagem>
+        <postagem titulo="Post 3 do blog" corpo="Esse texto é o detalhe da notícia 3"></postagem>
+        <postagem titulo="Post 4 do blog" corpo="Esse texto é o detalhe da notícia 4"></postagem>
+        
+        
     </div>
 
     <script type="text/javascript">
+        let postagem = {
+            props:['titulo', 'corpo'],
+            data:function(){
+                return {
+                    exemplo:'alguma informação ou dado que está vindo interno'
+                }
+            },
+            template:'<div><h5>{{ titulo }} </h5><p>{{ corpo }} </p><p>{{ exemplo }} </p></div>'
+        }
 
-        Vue.component('contador', {
-            template:'<button>Click aqui</button>'
-
-        });
-
-        let menuSuperior = {
-            template:'<span>MENU</span>'
-        };
-
-        let v_39_1 = new Vue({
-            el:'#v_39_1',
+        let v_40 = new Vue({
+            el:'#v_40',
             data:{
-                titulo:'título 1 do site'
+
             },
             components:{
-                'menu-superior':menuSuperior
+                postagem:postagem
             }
         });
-
-        let v_39_2 = new Vue({
-            el:'#v_39_2',
-            data:{
-                titulo:'título 2 do site'
-            }
-        });
+        
     </script>
 
 

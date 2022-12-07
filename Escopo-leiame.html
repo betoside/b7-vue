@@ -2595,7 +2595,75 @@
         });
     /script>
 
-#40: Passando props ao componente
+<hr>
+<strong>#40: Passando props ao componente</strong>
+
+    <div id="v_40">
+
+        <postagem titulo="Post 1 do blog" corpo="Esse texto é o detalhe da notícia 1"></postagem>
+        <postagem titulo="Post 2 do blog" corpo="Esse texto é o detalhe da notícia 2"></postagem>
+        <postagem titulo="Post 3 do blog" corpo="Esse texto é o detalhe da notícia 3"></postagem>
+        <postagem titulo="Post 4 do blog" corpo="Esse texto é o detalhe da notícia 4"></postagem>
+        
+        
+    </div>
+
+    <script type="text/javascript">
+        let postagem = {
+            props:['titulo', 'corpo'],
+            data:function(){
+                return {
+                    exemplo:'alguma informação ou dado que está vindo interno'
+                }
+            },
+            template:'<div><h5>{{ titulo }} </h5><p>{{ corpo }} </p><p>{{ exemplo }} </p></div>'
+        }
+
+        let v_40 = new Vue({
+            el:'#v_40',
+            data:{
+
+            },
+            components:{
+                postagem:postagem
+            }
+        });
+        
+    </script>
+    div id="v_40">
+
+        postagem titulo="Post 1 do blog" corpo="Esse texto é o detalhe da notícia 1">/postagem>
+        postagem titulo="Post 2 do blog" corpo="Esse texto é o detalhe da notícia 2">/postagem>
+        postagem titulo="Post 3 do blog" corpo="Esse texto é o detalhe da notícia 3">/postagem>
+        postagem titulo="Post 4 do blog" corpo="Esse texto é o detalhe da notícia 4">/postagem>
+        
+        
+    /div>
+
+    script type="text/javascript">
+        let postagem = {
+            props:['titulo', 'corpo'],
+            data:function(){
+                return {
+                    exemplo:'alguma informação ou dado que está vindo interno'
+                }
+            },
+            template:'div>h5>{{ titulo }} /h5>p>{{ corpo }} /p>p>{{ exemplo }} /p>/div>'
+        }
+
+        let v_40 = new Vue({
+            el:'#v_40',
+            data:{
+
+            },
+            components:{
+                postagem:postagem
+            }
+        });
+        
+    /script>
+
+
 #41: Componente com conteúdo
 #42: Executando funções fora do componente
 #43: Exercicio: To-do com componentes
