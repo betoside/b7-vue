@@ -2133,8 +2133,198 @@
         });
     /script>
     
-#34: Binding em formulários
-#35: Binding com valores
+<hr>
+<strong>#34: Binding em formulários</strong>
+
+    <div id="v_34">
+
+        v-model
+        tow ways bind
+        <input type="text" v-model="mensagem">
+        
+        <div>Mensagem: {{ mensagem }} </div>
+        <br>
+        
+        <input type="checkbox" v-model="selecionado"> <span>checkbox: {{selecionado}} </span>
+        <br>
+
+        <div>
+            .
+            <input type="checkbox" value="Alemão Schumaker" v-model="nomes"> Alemão
+            <input type="checkbox" value="Zé" v-model="nomes"> Zé
+            <input type="checkbox" value="Mariano" v-model="nomes"> Mariano
+            <br>
+            Nomes: {{ nomes }}
+        </div>
+
+        <div>
+            .
+            <input type="radio" value="sim" v-model="grupo"> sim
+            <input type="radio" value="nao" v-model="grupo"> não
+            <br>
+            Grupo: {{ grupo }}
+        </div>
+
+        <div>
+            .
+            <select name="opcao" v-model="opcao">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <br>
+            Opção: {{ opcao }}
+        </div>
+
+        <div>
+            .
+            <select v-model="selecionado">
+                <option v-for="item in opcoes">{{ item }}</option>
+            </select>
+            <br>
+            Opções: {{ selecionado }}
+        </div>
+        
+    </div>
+    <script>
+        let v_34 = new Vue({
+            el:'#v_34',
+            data:{
+                mensagem:'',
+                selecionado:false,
+                nomes:[],
+                grupo:'',
+                opcao:'',
+                opcoes:['Ferreira', 'Drone', 'elétrica', 'Ferramentaria', 'mecânica']
+            }
+        });
+    </script>
+    div id="v_34">
+
+        v-model
+        tow ways bind
+        input type="text" v-model="mensagem">
+        
+        div>Mensagem: {{ mensagem }} /div>
+        br>
+        
+        input type="checkbox" v-model="selecionado"> span>checkbox: {{selecionado}} /span>
+        br>
+
+        div>
+            .
+            input type="checkbox" value="Alemão Schumaker" v-model="nomes"> Alemão
+            input type="checkbox" value="Zé" v-model="nomes"> Zé
+            input type="checkbox" value="Mariano" v-model="nomes"> Mariano
+            br>
+            Nomes: {{ nomes }}
+        /div>
+
+        div>
+            .
+            input type="radio" value="sim" v-model="grupo"> sim
+            input type="radio" value="nao" v-model="grupo"> não
+            br>
+            Grupo: {{ grupo }}
+        /div>
+
+        div>
+            .
+            select name="opcao" v-model="opcao">
+                option>A/option>
+                option>B/option>
+                option>C/option>
+            /select>
+            br>
+            Opção: {{ opcao }}
+        /div>
+
+        div>
+            .
+            select v-model="selecionado">
+                option v-for="item in opcoes">{{ item }}/option>
+            /select>
+            br>
+            Opções: {{ selecionado }}
+        /div>
+        
+    /div>
+    script>
+        let v_34 = new Vue({
+            el:'#v_34',
+            data:{
+                mensagem:'',
+                selecionado:false,
+                nomes:[],
+                grupo:'',
+                opcao:'',
+                opcoes:['Ferreira', 'Drone', 'elétrica', 'Ferramentaria', 'mecânica']
+            }
+        });
+    /script>
+
+
+<hr>"
+<strong>#35: Binding com valores</strong>
+
+    <div id="v_35">
+
+        <input type="checkbox" v-model="marcado" true-value="sim" false-value="nao">
+
+        <div>
+            <strong>Marcado:</strong> {{ marcado }}
+        </div>
+
+        <div>
+            <select v-model="selecionado">
+                <option v-bind:value="{nome: 'Alberto', idade:40}">Opção 1</option>
+                <option v-bind:value="{nome: 'Pirata', idade:50}">Opção 2</option>
+                <option v-bind:value="{nome: 'Munari', idade:60}">Opção 3</option>
+            </select>
+            <br>
+            Selecionado:  {{ selecionado.nome }}, {{ selecionado }}
+        </div>
+        
+    </div>
+    <script>
+        let v_35 = new Vue({
+            el:'#v_35',
+            data:{
+                marcado:'sim',
+                selecionado:''
+            }
+        });
+    </script>"
+
+    div id="v_35">
+        
+        input type="checkbox" v-model="marcado" true-value="sim" false-value="nao">
+
+        div>
+            strong>Marcado:/strong> {{ marcado }}
+        /div>
+
+        div>
+            select v-model="selecionado">
+                option v-bind:value="{nome: 'Alberto', idade:40}">Opção 1/option>
+                option v-bind:value="{nome: 'Pirata', idade:50}">Opção 2/option>
+                option v-bind:value="{nome: 'Munari', idade:60}">Opção 3/option>
+            /select>
+            br>
+            Selecionado:  {{ selecionado.nome }}, {{ selecionado }}
+        /div>
+        
+    /div>
+    script>
+        let v_35 = new Vue({
+            el:'#v_35',
+            data:{
+                marcado:'sim',
+                selecionado:''
+            }
+        });
+    /script>
+    
 #36: Binding com modificadores
 #37: Criando os próprios componentes
 #38: Componente com ação simples
