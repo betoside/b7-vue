@@ -1366,8 +1366,131 @@
         // v_22.showWarning('Warning: mensagem de aviso');
     /script>
 
-#23: Bind inline
-#24: Renderização condicional
+<hr>
+<strong>#23: Bind inline</strong>
+
+    <div id="v_23">
+
+        <div v-bind:style="[avisoBase, avisoError]">
+            {{ aviso }}
+        </div>
+        
+    </div>
+    <script>
+        let v_23 = new Vue({
+            el:'#v_23',
+            data:{
+                aviso:'mensagem de aviso',
+                avisoBase:{
+                    border:'1px solid #000',
+                    fontSize:'20px',
+                    padding:'10px'
+                },
+                avisoError:{
+                    backgroundColor:'#f00',
+                    color:'#fff'
+                }
+
+            }
+        });
+        
+    </script>
+
+    div id="v_23">
+
+        div v-bind:style="[avisoBase, avisoError]">
+            {{ aviso }}
+        /div>
+        
+    /div>
+    script>
+        let v_23 = new Vue({
+            el:'#v_23',
+            data:{
+                aviso:'mensagem de aviso',
+                avisoBase:{
+                    border:'1px solid #000',
+                    fontSize:'20px',
+                    padding:'10px'
+                },
+                avisoError:{
+                    backgroundColor:'#f00',
+                    color:'#fff'
+                }
+
+            }
+        });
+        
+    /script>
+
+
+<hr>
+<strong>#24: Renderização condicional</strong>
+
+    v-inf
+    v-show
+    template
+
+    <div id="v_24">
+
+        <div v-if="ganhou">if: Você ganhou</div>
+        <div v-else>if: Você perdeu</div>
+
+        <div v-show="ganhou">show: ganhou</div>
+        <div v-show="!ganhou">show: perdeu</div>
+
+        <template v-if="ganhou">
+            Você ganhou
+            <strong>parabéns</strong>
+        </template>
+        <template v-else-if="">
+            ...
+        </template>
+        <template v-else>
+            Você perdeu
+            <strong>sorry</strong>
+        </template>
+        
+    </div>
+    <script>
+        let v_24 = new Vue({
+            el:'#v_24',
+            data:{
+                ganhou:false
+            }
+        });
+    </script>
+    div id="v_24">
+
+        div v-if="ganhou">if: Você ganhou/div>
+        div v-else>if: Você perdeu/div>
+
+        div v-show="ganhou">show: ganhou/div>
+        div v-show="!ganhou">show: perdeu/div>
+
+        template v-if="ganhou">
+            Você ganhou
+            strong>parabéns/strong>
+        /template>
+        template v-else-if="">
+            ...
+        /template>
+        template v-else>
+            Você perdeu
+            strong>sorry/strong>
+        /template>
+        
+    /div>
+    script>
+        let v_24 = new Vue({
+            el:'#v_24',
+            data:{
+                ganhou:false
+            }
+        });
+    /script>
+
+
 #25: Renderização de lista
 #26: Detecção de mudança de array
 #27: Detecção de mudança de objeto
