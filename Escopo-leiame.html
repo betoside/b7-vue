@@ -2873,7 +2873,141 @@
         });
     /script>
     
-#43: Exercicio: To-do com componentes
+<hr>
+<strong>#43: Exercicio: To-do com componentes</strong>
+    <div>
+        <div id="v_43_form">
+            <todo-adicionar v-on:add="addTodoItem"></todo-adicionar>
+        </div>
+        <div id="v_43_conteudo">
+
+        </div>
+        <div id="v_43_sidebar">
+            <lista v-bind:itens="itens"></lista>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Vue.component('todo-adicionar', {
+            data: function(){
+                return {
+                    txt:''
+                }
+            },
+            methods:{
+                add:function(){
+                    this.$emit('add', this.txt);
+
+                }
+            },
+            template:`
+            <div>
+                <input type="text" v-model="txt">
+                <button v-on:click="add">Adicionar</button>
+            </div>
+            `
+        });
+
+        let lista = {
+            props:['itens'],
+            template:`
+                <ul>
+                    <li v-for="item in itens"> {{ item }} </li>
+                </ul>
+            `
+        };
+
+        let v_43_form = new Vue({
+            el: '#v_43_form',
+            methods:{
+                addTodoItem:function(txt){
+                    v_43_sidebar.addItem(txt);
+                }
+            }
+            
+        });
+
+        let v_43_sidebar = new Vue({
+            el:'#v_43_sidebar',
+            data:{
+                itens:['item 1']
+            },
+            methods:{
+                addItem: function(txt){
+                    this.itens.push(txt);
+                }
+            },
+            components:{
+                lista:lista
+            }
+        });
+    </script>
+    ---div>
+        ---div id="v_43_form">
+            ---todo-adicionar v-on:add="addTodoItem">---/todo-adicionar>
+        ---/div>
+        ---div id="v_43_conteudo">
+
+        ---/div>
+        ---div id="v_43_sidebar">
+            ---lista v-bind:itens="itens">---/lista>
+        ---/div>
+    ---/div>
+    ---script type="text/javascript">
+        Vue.component('todo-adicionar', {
+            data: function(){
+                return {
+                    txt:''
+                }
+            },
+            methods:{
+                add:function(){
+                    this.$emit('add', this.txt);
+
+                }
+            },
+            template:`
+            ---div>
+                ---input type="text" v-model="txt">
+                ---button v-on:click="add">Adicionar---/button>
+            ---/div>
+            `
+        });
+
+        let lista = {
+            props:['itens'],
+            template:`
+                ---ul>
+                    ---li v-for="item in itens"> {{ item }} ---/li>
+                ---/ul>
+            `
+        };
+
+        let v_43_form = new Vue({
+            el: '#v_43_form',
+            methods:{
+                addTodoItem:function(txt){
+                    v_43_sidebar.addItem(txt);
+                }
+            }
+            
+        });
+
+        let v_43_sidebar = new Vue({
+            el:'#v_43_sidebar',
+            data:{
+                itens:['item 1']
+            },
+            methods:{
+                addItem: function(txt){
+                    this.itens.push(txt);
+                }
+            },
+            components:{
+                lista:lista
+            }
+        });
+    ---/script>
+    
 #44: Solução: To-do com componentes
 #45: Exercício: Sinal de trânsito
 #46: Exercício: To-do com busca
