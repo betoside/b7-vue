@@ -13,59 +13,109 @@
 
 
 <hr>
-<strong>#41: Componente com conteúdo</strong>
+<strong>#42: Executando funções fora do componente</strong>
 
-    <div id="v_41">
-        <aviso>Mensagem de aviso</aviso>
+    enviar informações de dentro de um componente para fora dele
 
-        <postagem>
-            <template slot="titulo">
-                Título da postagem 1
-            </template>
-            <template slot="corpo">
-                Corpo da postagem
-                <br>
-                <button>Botão da postagem</button>
-                <br>
-                <img src="https://www.google.com.br/google.jpg" alt="">
-            </template>
+    <div id="v_42">
+        <postagem titulo="Titulo da postagem 1" v-on:responder="abrirResposta">
+            Corpo da postagem 1
         </postagem>
-    </div>
-    <style>
-        .aviso{
-            border: 2px solid #000;
-            padding: 20px;
-            background-color: #f00;
-            color: #fff;
-        }
-    </style>
+        <postagem titulo="Titulo da postagem 2" v-on:responder="abrirResposta">
+            Corpo da postagem 2
+        </postagem>
 
+        <div v-if="responderAberto">
+            <span>Respondendo a: {{ respostaTitulo }}</span>
+            <textarea></textarea>
+
+        </div>
+
+    </div>
     <script type="text/javascript">
-        Vue.component('aviso',{
-            template:'<div class="aviso"><slot></slot></div>'
-        });
-        
         let postagem = {
+            props:[ 'titulo' ],
+            methods: {
+                responder: function(){
+                    this.$emit('responder', this.titulo);
+                }
+            },
             template:`
                 <div>
-                    <h5><slot name='titulo'></slot></h5>
-                    <p><slot name='corpo'></slot></p>
+                    <h5>{{ titulo }}</h5>
+                    <p><slot></slot></p>
+                    <button v-on:click="responder">Responder</button>
                 </div>
             `
         }
 
-        let v_41 = new Vue({
-            el:'#v_41',
+        let v_42 = new Vue({
+            el:'#v_42',
             data:{
-
+                responderAberto:false,
+                respostaTitulo:''
+            },
+            methods: {
+                abrirResposta: function(titulo){
+                    this.responderAberto = true;
+                    this.respostaTitulo = titulo;
+                }
             },
             components:{
-                postagem:postagem
+                postagem
             }
         });
-        
     </script>
 
+    div id="v_42">
+        postagem titulo="Titulo da postagem 1" v-on:responder="abrirResposta">
+            Corpo da postagem 1
+        /postagem>
+        postagem titulo="Titulo da postagem 2" v-on:responder="abrirResposta">
+            Corpo da postagem 2
+        /postagem>
+
+        div v-if="responderAberto">
+            span>Respondendo a: {{ respostaTitulo }}/span>
+            textarea>/textarea>
+
+        /div>
+
+    /div>
+    script type="text/javascript">
+        let postagem = {
+            props:[ 'titulo' ],
+            methods: {
+                responder: function(){
+                    this.$emit('responder', this.titulo);
+                }
+            },
+            template:`
+                div>
+                    h5>{{ titulo }}/h5>
+                    p>slot>/slot>/p>
+                    button v-on:click="responder">Responder/button>
+                /div>
+            `
+        }
+
+        let v_42 = new Vue({
+            el:'#v_42',
+            data:{
+                responderAberto:false,
+                respostaTitulo:''
+            },
+            methods: {
+                abrirResposta: function(titulo){
+                    this.responderAberto = true;
+                    this.respostaTitulo = titulo;
+                }
+            },
+            components:{
+                postagem
+            }
+        });
+    /script>
 
 </pre>
 
