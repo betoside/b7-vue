@@ -3008,9 +3008,15 @@
         });
     ---/script>
     
-#44: Solução: To-do com componentes
-#45: Exercício: Sinal de trânsito
-#46: Exercício: To-do com busca
+<hr>
+<strong>#44: Solução: To-do com componentes</strong>
+
+<hr>
+<strong>#45: Exercício: Sinal de trânsito</strong>
+
+<hr>
+<strong>#46: Exercício: To-do com busca</strong>
+
 #47: Exercício: Feed do instagram
 #48: Exercício: Tabela com edição via modal
 
@@ -3215,8 +3221,291 @@
         });
     ---/script>
 
-#51: Solução: To-do com busca (1/2)
-#52: Solução: To-do com busca (2/2)
+<hr>
+<strong>#51: Solução: To-do com busca (1/2)</strong>
+
+<hr>
+<strong>#52: Solução: To-do com busca (2/2)</strong>
+    <style>
+        #v_52{
+            background: #000;
+            color: #fff;
+            padding: 50px;
+        }
+        .v_52_lista th{
+            text-align: left;
+            padding: 10px;
+            background: #005;
+        }
+        .v_52_lista .tit-cat{
+            padding: 5px;
+            background: #111;
+        }
+    </style>
+    <div>
+        <div id="v_52">
+            <busca v-on:buscar="buscar"></busca>
+            <hr>
+            <lista v-bind:itens="exibidos"></lista>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let v_52_busca = {
+            data: function(){
+                return {
+                    txt: '',
+                    only_stock: false
+                }
+            },
+            methods:{
+                buscar:function(){
+                    this.$emit('buscar', {txt:this.txt, only_stock:this.only_stock});
+                }
+            },
+            template:`
+                <div>
+                    <input type="text" placeholder="Busca..." v-model="txt" v-on:keyup="buscar"> <br>
+                    <input type="checkbox" id="only_stock" v-model="only_stock" v-on:change="buscar">
+                    <label for="only_stock">Mostrar apenas produtos em estoque</label>
+
+                    <!-- <p>{{txt}} - {{ only_stock }} </p> -->
+                </div>
+            `
+        };
+
+        let v_52_lista = {
+            props:['itens'],
+            template:`
+                <div>
+                    <table border="0" width="100%" class="v_52_lista">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                        </tr>
+                        
+                        <template v-for="cat in itens">
+                            <tr>
+                                <td colspan="2" class="tit-cat"> <strong> {{ cat.nome }} </strong> </td>
+                            </tr>
+                            <tr v-for="p in cat.itens">
+                                <td v-if="p.estoque"> {{ '$'+p.nome }} </td>
+                                <td v-else style="color: red"> {{ '$'+p.nome }} </td>
+                                <td> {{ '$'+p.preco }} </td>
+                            </tr>
+                        </template>
+
+                    </table>
+                </div>
+            `
+        };
+
+        let v_52 = new Vue({
+            el:'#v_52',
+            data:{
+                produtos:[
+                    {nome:'Sporting Goods', itens:[
+                        {nome:'Football', preco:'49.99', estoque:true},
+                        {nome:'Baseball', preco:'9.99', estoque:true},
+                        {nome:'Basketball', preco:'29.99', estoque:false}
+                    ]},
+                    {nome:'Eletronics', itens:[
+                        {nome:'iPod Touch', preco:'99.99', estoque:true},
+                        {nome:'iPhone 5', preco:'399.99', estoque:false},
+                        {nome:'Nexus 7', preco:'199.99', estoque:true}
+                    ]}
+                ],
+                exibidos: []
+            },
+            created: function(){
+                this.exibidos = this.produtos;
+            },
+            methods:{
+                buscar:function(p){
+                    console.log(p);
+                    let novaLista = [];
+
+                    for(let i in this.produtos){
+
+                        let novositens = [];
+
+                        for(let w in this.produtos[i].itens){
+
+                            let vai = true;
+
+                            if(p.only_stock && this.produtos[i].itens[w].estoque == false){
+                                vai  = false;
+                            }
+
+                            if(p.txt != '' && this.produtos[i].itens[w].nome.toLowerCase().indexOf(p.txt.toLowerCase()) == -1){
+                                vai  = false;
+                            }
+
+                            if(vai){
+                                novositens.push( this.produtos[i].itens[w] );
+                            }
+
+                        }
+
+                        if(novositens.length > 0){
+                            novaLista.push({
+                                nome:this.produtos[i].nome,
+                                itens:novositens
+                            });
+                        }
+
+                    }
+
+                    this.exibidos = novaLista;
+                }
+            },
+            components:{
+                busca: v_52_busca,
+                lista: v_52_lista
+            }
+        });
+    </script>
+
+    ---style>
+        #v_52{
+            background: #000;
+            color: #fff;
+            padding: 50px;
+        }
+        .v_52_lista th{
+            text-align: left;
+            padding: 10px;
+            background: #005;
+        }
+        .v_52_lista .tit-cat{
+            padding: 5px;
+            background: #111;
+        }
+    ---/style>
+    ---div>
+        ---div id="v_52">
+            ---busca v-on:buscar="buscar">---/busca>
+            ---hr>
+            ---lista v-bind:itens="exibidos">---/lista>
+        ---/div>
+    ---/div>
+
+    ---script type="text/javascript">
+        let v_52_busca = {
+            data: function(){
+                return {
+                    txt: '',
+                    only_stock: false
+                }
+            },
+            methods:{
+                buscar:function(){
+                    this.$emit('buscar', {txt:this.txt, only_stock:this.only_stock});
+                }
+            },
+            template:`
+                ---div>
+                    ---input type="text" placeholder="Busca..." v-model="txt" v-on:keyup="buscar"> ---br>
+                    ---input type="checkbox" id="only_stock" v-model="only_stock" v-on:change="buscar">
+                    ---label for="only_stock">Mostrar apenas produtos em estoque---/label>
+
+                    ---!-- ---p>{{txt}} - {{ only_stock }} ---/p> -->
+                ---/div>
+            `
+        };
+
+        let v_52_lista = {
+            props:['itens'],
+            template:`
+                ---div>
+                    ---table border="0" width="100%" class="v_52_lista">
+                        ---tr>
+                            ---th>Nome---/th>
+                            ---th>Preço---/th>
+                        ---/tr>
+                        
+                        ---template v-for="cat in itens">
+                            ---tr>
+                                ---td colspan="2" class="tit-cat"> ---strong> {{ cat.nome }} ---/strong> ---/td>
+                            ---/tr>
+                            ---tr v-for="p in cat.itens">
+                                ---td v-if="p.estoque"> {{ '$'+p.nome }} ---/td>
+                                ---td v-else style="color: red"> {{ '$'+p.nome }} ---/td>
+                                ---td> {{ '$'+p.preco }} ---/td>
+                            ---/tr>
+                        ---/template>
+
+                    ---/table>
+                ---/div>
+            `
+        };
+
+        let v_52 = new Vue({
+            el:'#v_52',
+            data:{
+                produtos:[
+                    {nome:'Sporting Goods', itens:[
+                        {nome:'Football', preco:'49.99', estoque:true},
+                        {nome:'Baseball', preco:'9.99', estoque:true},
+                        {nome:'Basketball', preco:'29.99', estoque:false}
+                    ]},
+                    {nome:'Eletronics', itens:[
+                        {nome:'iPod Touch', preco:'99.99', estoque:true},
+                        {nome:'iPhone 5', preco:'399.99', estoque:false},
+                        {nome:'Nexus 7', preco:'199.99', estoque:true}
+                    ]}
+                ],
+                exibidos: []
+            },
+            created: function(){
+                this.exibidos = this.produtos;
+            },
+            methods:{
+                buscar:function(p){
+                    console.log(p);
+                    let novaLista = [];
+
+                    for(let i in this.produtos){
+
+                        let novositens = [];
+
+                        for(let w in this.produtos[i].itens){
+
+                            let vai = true;
+
+                            if(p.only_stock && this.produtos[i].itens[w].estoque == false){
+                                vai  = false;
+                            }
+
+                            if(p.txt != '' && this.produtos[i].itens[w].nome.toLowerCase().indexOf(p.txt.toLowerCase()) == -1){
+                                vai  = false;
+                            }
+
+                            if(vai){
+                                novositens.push( this.produtos[i].itens[w] );
+                            }
+
+                        }
+
+                        if(novositens.length > 0){
+                            novaLista.push({
+                                nome:this.produtos[i].nome,
+                                itens:novositens
+                            });
+                        }
+
+                    }
+                    
+                    this.exibidos = novaLista;
+                }
+            },
+            components:{
+                busca: v_52_busca,
+                lista: v_52_lista
+            }
+        });
+    ---/script>
+
 #53: Interpretado In-Browser vs Pré-compilado
 #54: Projeto Pré-compilado (1/2)
 #55: Projeto Pré-compilado (2/2)
