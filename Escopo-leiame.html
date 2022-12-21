@@ -2774,12 +2774,12 @@
     enviar informações de dentro de um componente para fora dele
 
     <div id="v_42">
-        <postagem titulo="Titulo da postagem 1" v-on:responder="abrirResposta">
-            Corpo da postagem 1
-        </postagem>
-        <postagem titulo="Titulo da postagem 2" v-on:responder="abrirResposta">
-            Corpo da postagem 2
-        </postagem>
+        <postagem_v_42 titulo="Titulo da postagem_v_42 1" v-on:responder="abrirResposta">
+            Corpo da postagem_v_42 1
+        </postagem_v_42>
+        <postagem_v_42 titulo="Titulo da postagem_v_42 2" v-on:responder="abrirResposta">
+            Corpo da postagem_v_42 2
+        </postagem_v_42>
 
         <div v-if="responderAberto">
             <span>Respondendo a: {{ respostaTitulo }}</span>
@@ -2789,7 +2789,7 @@
 
     </div>
     <script type="text/javascript">
-        let postagem = {
+        let postagem_v_42 = {
             props:[ 'titulo' ],
             methods: {
                 responder: function(){
@@ -2818,18 +2818,18 @@
                 }
             },
             components:{
-                postagem
+                postagem_v_42
             }
         });
     </script>
 
     div id="v_42">
-        postagem titulo="Titulo da postagem 1" v-on:responder="abrirResposta">
-            Corpo da postagem 1
-        /postagem>
-        postagem titulo="Titulo da postagem 2" v-on:responder="abrirResposta">
-            Corpo da postagem 2
-        /postagem>
+        postagem_v_42 titulo="Titulo da postagem_v_42 1" v-on:responder="abrirResposta">
+            Corpo da postagem_v_42 1
+        /postagem_v_42>
+        postagem_v_42 titulo="Titulo da postagem_v_42 2" v-on:responder="abrirResposta">
+            Corpo da postagem_v_42 2
+        /postagem_v_42>
 
         div v-if="responderAberto">
             span>Respondendo a: {{ respostaTitulo }}/span>
@@ -2839,7 +2839,7 @@
 
     /div>
     script type="text/javascript">
-        let postagem = {
+        let postagem_v_42 = {
             props:[ 'titulo' ],
             methods: {
                 responder: function(){
@@ -2868,7 +2868,7 @@
                 }
             },
             components:{
-                postagem
+                postagem_v_42
             }
         });
     /script>
@@ -3013,8 +3013,208 @@
 #46: Exercício: To-do com busca
 #47: Exercício: Feed do instagram
 #48: Exercício: Tabela com edição via modal
+
 #49: Solução: Sinal de trânsito (1/2)
-#50: Solução: Sinal de trânsito (2/2)
+<hr>
+<strong>#50: Solução: Sinal de trânsito (2/2)</strong>
+    <style>
+        #v_49{
+            background: #000;
+            color: #fff;
+        }
+        .v49-controle{
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .bola{
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: 1px solid #999;
+            margin-bottom: 20px;
+            background: #000;
+        }
+        .sinal{
+            background: #333;
+            padding: 20px;
+            padding-bottom: 0;
+            display: inline-block;
+            border-radius: 25px;
+
+        }
+        .red{ background: #f00; }
+        .yellow{ background: #ff0; }
+        .green{ background: #0f0; }
+    </style>
+    <div>
+        <div id="v_49">
+            <div class="v49-controle">
+                <button v-if="sinalStatus == 'red'" v-on:click="liberar">Liberar</button>
+                <button v-else v-on:click="fechar">Fechar</button>
+            </div>
+
+            <sinal v-bind:status="sinalStatus" />
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+        let v49_bola = {
+            props:['cor'],
+            template:`
+                <div class="bola" v-bind:class='cor'>
+                </div>
+            `
+        };
+
+        Vue.component('sinal', {
+            props:['status'],
+            components:{
+                bola: v49_bola
+            },
+            template:`
+                <div class="sinal">
+                    <template v-if="status == 'red'">
+                        <bola cor="red" />
+                        <bola />
+                        <bola />
+                    </template>
+                    <template v-else-if="status == 'yellow'">
+                        <bola />
+                        <bola cor="yellow" />
+                        <bola />
+                    </template>
+                    <template v-else-if="status == 'green'">
+                        <bola />
+                        <bola />
+                        <bola cor="green" />
+                    </template>
+                </div>
+            `
+        });
+
+        let v_49 = new Vue({
+            el:'#v_49',
+            data:{
+                sinalStatus:'red' // red, yeloow, green
+
+            },
+            methods:{
+                liberar:function(){
+                    console.log('liberar');
+                    this.sinalStatus = 'green';
+                },
+                fechar:function(){
+                    console.log('fechar: yellow');
+                    setTimeout(this.fecharSinal, 1000);
+                    this.sinalStatus = 'yellow';
+                },
+                fecharSinal: function(){
+                    this.sinalStatus = 'red';
+                }
+            }
+        });
+    </script>
+
+    ---style>
+        #v_49{
+            background: #000;
+            color: #fff;
+        }
+        .v49-controle{
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .bola{
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: 1px solid #999;
+            margin-bottom: 20px;
+            background: #000;
+        }
+        .sinal{
+            background: #333;
+            padding: 20px;
+            padding-bottom: 0;
+            display: inline-block;
+            border-radius: 25px;
+
+        }
+        .red{ background: #f00; }
+        .yellow{ background: #ff0; }
+        .green{ background: #0f0; }
+    ---/style>
+    ---div>
+        ---div id="v_49">
+            ---div class="v49-controle">
+                ---button v-if="sinalStatus == 'red'" v-on:click="liberar">Liberar---/button>
+                ---button v-else v-on:click="fechar">Fechar---/button>
+            ---/div>
+
+            ---sinal v-bind:status="sinalStatus" />
+            
+        ---/div>
+    ---/div>
+    ---script type="text/javascript">
+        let v49_bola = {
+            props:['cor'],
+            template:`
+                ---div class="bola" v-bind:class='cor'>
+                ---/div>
+            `
+        };
+
+        Vue.component('sinal', {
+            props:['status'],
+            components:{
+                bola: v49_bola
+            },
+            template:`
+                ---div class="sinal">
+                    ---template v-if="status == 'red'">
+                        ---bola cor="red" />
+                        ---bola />
+                        ---bola />
+                    ---/template>
+                    ---template v-else-if="status == 'yellow'">
+                        ---bola />
+                        ---bola cor="yellow" />
+                        ---bola />
+                    ---/template>
+                    ---template v-else-if="status == 'green'">
+                        ---bola />
+                        ---bola />
+                        ---bola cor="green" />
+                    ---/template>
+                ---/div>
+            `
+        });
+
+        let v_49 = new Vue({
+            el:'#v_49',
+            data:{
+                sinalStatus:'red' // red, yeloow, green
+
+            },
+            methods:{
+                liberar:function(){
+                    console.log('liberar');
+                    this.sinalStatus = 'green';
+                },
+                fechar:function(){
+                    console.log('fechar: yellow');
+                    setTimeout(this.fecharSinal, 1000);
+                    this.sinalStatus = 'yellow';
+                },
+                fecharSinal: function(){
+                    this.sinalStatus = 'red';
+                }
+            }
+        });
+    ---/script>
+
 #51: Solução: To-do com busca (1/2)
 #52: Solução: To-do com busca (2/2)
 #53: Interpretado In-Browser vs Pré-compilado
